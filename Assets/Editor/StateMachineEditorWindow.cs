@@ -15,9 +15,28 @@ namespace Editor
         GameState
     }
 
-    public class StateMachineEditorWindow : OdinMenuEditorWindow
+     public class StateMachineEditorWindow : OdinMenuEditorWindow
     {
-        [MenuItem("Tools /State Machine Editor")]
+        /*
+         * 请注意文件夹结构
+         * Sample
+         *     - StateMachine
+         *         - GameState
+         *             - GameState1
+         *             - GameState2
+         *         - OtherState
+         *             - ...
+         *         - ...
+         * Resources
+         *     - SO
+         *         - GameState
+         *             - GameState1.asset
+         *             - GameState2.asset
+         *         - OtherState
+         *             - ...
+         *         - ...
+         */
+        [MenuItem("Tools/State Machine Editor")]
         public static void OpenWindow()
         {
             GetWindow<StateMachineEditorWindow>().Show();
@@ -46,7 +65,7 @@ namespace Editor
         }
 
         private StateMachineEditor stateMachineEditor;
-        public string nameSpace = "Sample.StateMachine";
+        public string nameSpace => " Sample.StateMachine";
 
         protected override OdinMenuTree BuildMenuTree()
         {
@@ -57,7 +76,7 @@ namespace Editor
 
             foreach (var stateType in Enum.GetValues(typeof(StateType)))
             {
-                Type screenType = assembly.GetType($"{nameSpace}.{stateType}");
+                Type screenType = assembly.GetType($"{nameSpace}.{stateType}.{stateType}");
                 Type[] allSubclasses = screenType.GetAllDerivedTypes().ToArray();
                 //allSubclasses.Print();
                 foreach (var subclass in allSubclasses)
@@ -75,50 +94,48 @@ namespace Editor
     public class StateMachineEditor
     {
         #region 程序集与命名空间配置
-        
+
         private string nameSpace;
         private Assembly assembly;
-        
-        #endregion
-        
-        #region 状态选择
-        [EnumToggleButtons] [OnValueChanged("CreateNewState")]
-        public StateType stateType = StateType.PlayerState;
 
-        Type screenType => assembly.GetType($"{nameSpace}.{stateType}");
+        #endregion
+
+        #region 状态选择
+
+        [EnumToggleButtons] [OnValueChanged("CreateNewState")]
+        public StateType stateType = StateType.GameState;
+
+        Type screenType => assembly.GetType($"{nameSpace}.{stateType}.{stateType}");
         Type[] allSubclasses => screenType.GetAllDerivedTypes().ToArray();
 
-        [ShowInInspector] [ValueDropdown("allSubclasses")]
+        [ShowInInspector] [ValueDropdown("allSubclasses"),OnValueChanged("CreateNewState")]
         public Type selectedSubclass;
+
         #endregion
 
         [Header("文件名称")] public string fileName;
-        
-        [Header("状态数据")]
 
-        [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Boxed)]
-        [ShowInInspector] ScriptableObject currentState;
+        [Header("状态数据")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Boxed)] [ShowInInspector]
+        ScriptableObject currentState;
 
 
         public StateMachineEditor(string nameSpace, Assembly assembly)
         {
             this.nameSpace = nameSpace;
             this.assembly = assembly;
-            
+            selectedSubclass = allSubclasses[0];
             CreateNewState();
         }
 
 
         public void CreateNewState()
         {
-            selectedSubclass = allSubclasses[0];
             currentState = ScriptableObject.CreateInstance(selectedSubclass);
         }
 
         [Button("Create New State Asset")]
         private void CreateAsset()
         {
-            
             AssetDatabase.CreateAsset(currentState, $"Assets/Resources/SO/{fileName}.asset");
             AssetDatabase.SaveAssets();
         }
