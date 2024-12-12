@@ -23,7 +23,7 @@ namespace Editor
     // 数据编辑器窗口类，继承自OdinMenuEditorWindow
     public class CusdomEditorWindow : OdinMenuEditorWindow
     {
-        // 在菜单栏中添加“Tools / Data Editor”选项以打开窗口
+        // 在菜单栏中添加选项以打开窗口
         [MenuItem("Tools / Cusdom Editor")]
         public static void OpenWindow()
         {
