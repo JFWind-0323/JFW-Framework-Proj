@@ -1,4 +1,4 @@
-using Framework.StateMachine.InterFace;
+using Framework.StateMachine.Interface;
 using UnityEngine;
 
 namespace Framework.StateMachine.Base
