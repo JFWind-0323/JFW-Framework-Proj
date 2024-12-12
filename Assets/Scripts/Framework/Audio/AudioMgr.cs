@@ -6,10 +6,16 @@ namespace Framework.Audio
 {
     public class AudioManager : MonoSingle<AudioManager>
     {
+        private struct Channel
+        {
+            public AudioSource channel;
+            public float keyOnTime; //记录最近一次播放音乐的时刻
+        }
+
         // 整个游戏中，总的音源数量
         private const int AUDIO_CHANNEL_NUM = 8;
         private Channel[] channels;
-        
+
 
         void Start()
         {
@@ -22,8 +28,14 @@ namespace Framework.Audio
             }
         }
 
-        //公开方法：播放一次，参数为音频片段、音量、左右声道、速度
-        //这个方法主要用于音效，因此考虑了音效顶替的逻辑
+        /// <summary>
+        /// 播放一次，参数为音频片段、音量、左右声道、速度,这个方法主要用于音效，因此考虑了音效顶替的逻辑
+        /// </summary>
+        /// <param name="clip"></param>
+        /// <param name="volume"></param>
+        /// <param name="pan"></param>
+        /// <param name="pitch"></param>
+        /// <returns></returns>
         public int PlayOneShot(AudioClip clip, float volume, float pan, float pitch = 1.0f)
         {
             for (var i = 0; i < channels.Length; i++)
@@ -75,8 +87,15 @@ namespace Framework.Audio
             return -1;
         }
 
-        //公开方法：循环播放，用于播放长时间的背景音乐，处理方式相对简单一些
-        public int PlayLoop(AudioClip clip, float volume, float pan, float pitch = 1.0f)
+        /// <summary>
+        /// 循环播放，用于播放长时间的背景音乐，处理方式相对简单一些
+        /// </summary>
+        /// <param name="clip"></param>
+        /// <param name="volume"></param>
+        /// <param name="pan"></param>
+        /// <param name="pitch"></param>
+        /// <returns></returns>
+        public int PlayLoop(AudioClip clip, float volume = 1.0f, float pan = 0.0f, float pitch = 1.0f)
         {
             for (var i = 0; i < channels.Length; i++)
                 if (!channels[i].channel.isPlaying)
@@ -94,23 +113,22 @@ namespace Framework.Audio
             return -1;
         }
 
-        //公开方法：停止所有音频
+        /// <summary>
+        /// 停止所有音频
+        /// </summary>
         public void StopAll()
         {
             foreach (var channel in channels)
                 channel.channel.Stop();
         }
 
-        //公开方法：根据频道ID停止音频
+        /// <summary>
+        /// 公开方法：根据频道ID停止音频
+        /// </summary>
+        /// <param name="id"></param>
         public void Stop(int id)
         {
             if (id >= 0 && id < channels.Length) channels[id].channel.Stop();
-        }
-
-        private struct Channel
-        {
-            public AudioSource channel;
-            public float keyOnTime; //记录最近一次播放音乐的时刻
         }
     }
 }

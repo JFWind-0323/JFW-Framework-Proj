@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,12 @@ namespace Utilities
         public static void PrintDict<TKey, TValue>(this Dictionary<TKey, TValue> dict)
         {
             foreach (var item in dict) Debug.Log(item.Key + " : " + item.Value);
+        }
+
+        public static void Print<T>(this T IEnumerable) where T : IEnumerable
+        {
+            foreach (var item in IEnumerable) 
+                Debug.Log(item.ToString());
         }
         
         /// <summary>

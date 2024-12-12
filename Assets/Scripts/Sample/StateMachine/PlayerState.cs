@@ -1,3 +1,4 @@
+using Config;
 using Framework.DataPersistence;
 using Framework.StateMachine.Base;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Sample.StateMachine
 {
     public class PlayerState : GenericState<PlayerState>
     {
-        public string stateName;
+        
         public PlayerData playerData;
         [Range(0f, 1f)] public float duration;
         protected int stateHash => Animator.StringToHash(stateName);

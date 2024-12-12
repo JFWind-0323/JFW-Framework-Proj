@@ -1,3 +1,6 @@
+using Config;
+using Framework.Audio;
+using Framework.DataPersistence;
 using Framework.UI;
 using Framework.UI.Enum;
 using Sample.SceneLoder;
@@ -10,7 +13,7 @@ namespace Sample
     public class GameManager : MonoBehaviour
     {
         public PlayerStateMachine playerStateMachine;
-
+        public AudioConfig audioConfig;
         private UIMgr uiMgr;
         private bool IsTabAvtive;
 
@@ -50,6 +53,7 @@ namespace Sample
             {
                 SceneLoaderTest.Instance.LoadScene((SceneManager.GetActiveScene().buildIndex +
                                                     1) % SceneManager.sceneCountInBuildSettings);
+                AudioManager.Instance.PlayLoop(audioConfig.audioClips[AudioClipType.BGM_1]);
             }
         }
 
