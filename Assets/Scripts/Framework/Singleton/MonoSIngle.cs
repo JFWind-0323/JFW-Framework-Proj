@@ -4,6 +4,10 @@ namespace Framework.Singleton
 {
     public abstract class MonoSingle<T> : MonoBehaviour where T : MonoSingle<T>
     {
+        /*
+         * Monobehaviour 单例
+         * 调用时自动创建
+         */
         private static T instance;
         private static readonly object lockObject = new();
 
@@ -28,7 +32,7 @@ namespace Framework.Singleton
             }
         }
 
-        protected virtual void Awake()
+        private void Awake()
         {
             if (instance == null)
             {
@@ -40,12 +44,25 @@ namespace Framework.Singleton
             {
                 Destroy(gameObject); // 确保只存在一个实例
             }
+            WhenInit();
             //DontDestroyOnLoad(Instance.gameObject);
         }
 
-        protected virtual void OnDestroy()
+        private void OnDestroy()
         {
             if (instance == this) instance = null; // 清理引用
+            WhenDestroy();
         }
+
+        protected virtual void WhenInit()
+        {
+            
+        }
+
+        protected virtual void WhenDestroy()
+        {
+            
+        }
+        
     }
 }

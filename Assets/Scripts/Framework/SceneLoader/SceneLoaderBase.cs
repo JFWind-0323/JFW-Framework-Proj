@@ -7,6 +7,10 @@ namespace Framework.Singleton.SceneLoader
 {
     public class SceneLoaderBase : MonoSingle<SceneLoaderBase>
     {
+        /*
+         * 继承该类重写渐入渐出的逻辑，就可以实现场景切换的效果
+         * FadeIn结束时开始加载场景，场景加载完成后FadeOut
+         */
         [Header("渐入时长")]
         public float fadeInDuration = 0.5f;
 

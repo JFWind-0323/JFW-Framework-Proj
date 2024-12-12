@@ -4,7 +4,7 @@ using UnityEngine;
 //音频管理器
 namespace Framework.Audio
 {
-    public class AudioManager : MonoSingle<AudioManager>
+    public class AudioMgr : MonoSingle<AudioMgr>
     {
         private struct Channel
         {
@@ -16,8 +16,7 @@ namespace Framework.Audio
         private const int AUDIO_CHANNEL_NUM = 8;
         private Channel[] channels;
 
-
-        void Start()
+        protected override void WhenInit()
         {
             channels = new Channel[AUDIO_CHANNEL_NUM];
             for (var i = 0; i < AUDIO_CHANNEL_NUM; i++)
@@ -27,6 +26,7 @@ namespace Framework.Audio
                 channels[i].keyOnTime = 0;
             }
         }
+        
 
         /// <summary>
         /// 播放一次，参数为音频片段、音量、左右声道、速度,这个方法主要用于音效，因此考虑了音效顶替的逻辑
@@ -97,6 +97,7 @@ namespace Framework.Audio
         /// <returns></returns>
         public int PlayLoop(AudioClip clip, float volume = 1.0f, float pan = 0.0f, float pitch = 1.0f)
         {
+            Debug.Log(clip.name);
             for (var i = 0; i < channels.Length; i++)
                 if (!channels[i].channel.isPlaying)
                 {
