@@ -57,13 +57,18 @@ namespace Sample.UI.Panel
         {
             var so = optionsSODict[index];
             Type soType = so.GetType();
-            FieldInfo[] fields = soType.GetFields(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance);
+            FieldInfo[] fields = soType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             string textValue = string.Empty;
             foreach (var field in fields)
             {
                 object value = field.GetValue(so);
+                if (value == null)
+                {
+                    textValue = string.Empty;
+                }
+
                 // 检查是否是数组
-                if (value.GetType().IsArray)
+                else if (value.GetType().IsArray)
                 {
                     Array array = (Array)value;
                     textValue += $"{field.Name} (Array): ";
@@ -91,7 +96,6 @@ namespace Sample.UI.Panel
 
                         textValue = textValue.TrimEnd(',', ' '); // 去掉最后的逗号
                     }
-                  
                 }
                 else
                 {

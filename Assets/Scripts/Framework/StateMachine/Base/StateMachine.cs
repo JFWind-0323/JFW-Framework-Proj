@@ -8,6 +8,9 @@ namespace Framework.StateMachine.Base
 {
     public class StateMachine<TState> : MonoBehaviour, IStateMachine<TState> where TState : GenericState<TState>
     {
+        /*
+         * 该泛型状态机已经足够抽象，请务必注意状态列表的路径，每个状态都以SO的形式存在
+         */
         public string stateSOPath;
         public TState[] stateList;
         public TState currentState;

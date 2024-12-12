@@ -8,6 +8,13 @@ namespace Framework.EDA
 {
     public class EventCenter : Singleton<EventCenter>
     {
+        /*
+         * 事件中心，用于管理事件的注册、订阅、发布
+         * 事件中心的字典中存储着所有注册的事件，通过事件枚举来索引
+         * 事件中心的订阅列表中存储着所有订阅了的事件的回调函数，通过事件枚举来索引
+         * 请将所有事件都注册在事件中心的构造函数中，需要时调用\
+         * 订阅事件时，需要给Subscribe传入泛型参数，并传入回调函数
+         */
         private readonly Dictionary<EventEnum, IEvent> eventsDic = new();
 
         private EDA_Event<int> onSceneLoad = new EDA_Event<int>();

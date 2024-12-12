@@ -9,6 +9,30 @@ namespace Framework.UI
 {
     public partial class UIMgr : MonoSingle<UIMgr>
     {
+        /*
+         * UI管理器，请务必注意UI层级关系
+         * 最适合该框架的关系如下
+         * MainPanel
+         * - Panel1
+         *  - - Panel1-1
+         * - Panel2
+         *  - - Panel2-1
+         *  - - Panel2-2
+         *  - - Panel2-3
+         * - Panel3
+         *  - -etc
+         * 举例：
+         * 点击ESC->打开菜单栏
+         * 菜单栏
+         *   - 设置
+         *      - - 声音
+         *      - - 画面
+         *      - - 通用
+         *   - 关于
+         *   - 退出游戏
+         * 注意文件夹结构，UI预制体放在/Assets/Resources/Prefabs/UIPrefab下，有特殊需求自行修改
+         */
+        
         //Canvas
         public Transform canvasTf;
         private readonly string uiPrefabPath = "Prefabs/UIPrefab";
@@ -24,10 +48,9 @@ namespace Framework.UI
 
         private Stack<PanelBase> stackPanel;
 
+        protected override void WhenInit()
 
-        protected override void Awake()
         {
-            base.Awake();
             //设置好MainCanvas
             canvasTf = GameObject.FindWithTag("MainCanvas").transform;
             DontDestroyOnLoad(canvasTf.gameObject);
@@ -35,7 +58,6 @@ namespace Framework.UI
             InitUILayer();
             LoadLayer();
         }
-
         private void InitPath()
         {
             //从UIPrefab文件夹中找到所有UI的预制体

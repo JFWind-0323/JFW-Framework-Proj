@@ -5,6 +5,10 @@ namespace Framework.UI.Base
 {
     public class PanelBase : MonoBehaviour
     {
+        /*
+         *每个面板的逻辑都需要继承自PanelBase并挂载到物体上
+         * 如果没有逻辑，就可以直接挂PanelBase
+         */
         public UILayer uiLayer;
 
         public void OnEnter()

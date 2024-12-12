@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c621b6cb7edb46f2b7fd1db054b31e7c, type: 3}
   m_Name: TestAudioConfig
   m_EditorClassIdentifier: 
+  audioClipKeys: 0000000001000000
+  audioClipValues:
+  - {fileID: 8300000, guid: 5a9f46783adcab44988d983f4569c0a1, type: 3}
+  - {fileID: 8300000, guid: 96c44c15ee760bf458c4dbb6ac5ba012, type: 3}

@@ -1,6 +1,7 @@
 using Config;
 using Framework.Audio;
 using Framework.DataPersistence;
+using Framework.EDA;
 using Framework.UI;
 using Framework.UI.Enum;
 using Sample.SceneLoder;
@@ -53,14 +54,28 @@ namespace Sample
             {
                 SceneLoaderTest.Instance.LoadScene((SceneManager.GetActiveScene().buildIndex +
                                                     1) % SceneManager.sceneCountInBuildSettings);
-                AudioManager.Instance.PlayLoop(audioConfig.audioClips[AudioClipType.BGM_1]);
             }
         }
 
+        void PlayerBGMWhenSceneIsLoaded(int sceneID)
+        {
+            AudioMgr.Instance.StopAll();
+            switch (sceneID)
+            {
+                case 0:
+                    AudioMgr.Instance.PlayLoop(audioConfig.audioClips[AudioClipType.BGM_1]);
+                    break;
+                case 1:
+                    AudioMgr.Instance.PlayLoop(audioConfig.audioClips[AudioClipType.BGM_2]);
+                    break;
+            }
+        }
         void Start()
         {
             uiMgr = UIMgr.Instance;
             uiMgr.LoadPanel(UIType.PanelInfo);
+            PlayerBGMWhenSceneIsLoaded(SceneManager.GetActiveScene().buildIndex);
+            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad,PlayerBGMWhenSceneIsLoaded);
         }
 
         void Update()
