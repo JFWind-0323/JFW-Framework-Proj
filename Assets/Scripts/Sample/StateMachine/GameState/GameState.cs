@@ -1,6 +1,6 @@
 ﻿using Framework.StateMachine.Base;
 
-namespace Sample.StateMachine
+namespace Sample.StateMachine.GameState
 {
     public class GameState:GenericState<GameState>
     {
