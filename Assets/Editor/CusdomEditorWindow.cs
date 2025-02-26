@@ -15,7 +15,6 @@ namespace Editor
         GameData = 0,
         PlayerData = 1,
         LevelData = 2,
-
         AudioConfig = 3
         //切记在下方添加Switch进行筛选
     }

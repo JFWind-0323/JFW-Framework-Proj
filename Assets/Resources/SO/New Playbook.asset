@@ -1,0 +1,277 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: New Playbook
+  m_EditorClassIdentifier: Assembly-CSharp:TextSystem:TextDataLinearSO
+  filePath: Assets/Editor/test.txt
+  playbookName: New Playbook
+  lines:
+  - id: 0
+    next: 1
+    text: "\u8BF4\u662F\u6574\u5929\u9760\u7740\u706B\uFF0C\u70ED\u95F9\u5462\uFF0C\u597D\u50CF\u4ECE\u6765\u90FD\u4E0D\u5C5E\u4E8E\u6211\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 1
+    next: 2
+    text: "\u6797\u5B88\u61E6\u4EBA\u751F\u5341\u56DB\u8F7D\uFF0C\u4E0D\u8FC7\u4F4E\u58F0\u4E0B\u6C14\u5341\u51E0\u5E74\uFF0C\r"
+    isDone: 0
+    type: 0
+  - id: 2
+    next: 3
+    text: "\u6211\u5988\u8BF4\uFF0C\u5584\u6709\u5584\u62A5\uFF0C\u6076\u6709\u6076\u62A5\uFF0C\r"
+    isDone: 0
+    type: 0
+  - id: 3
+    next: 4
+    text: "\u6240\u4EE5\u6076\u81EA\u7136\u6709\u6076\u62A5\uFF0C\u6211\u4EEC\u5BB6\u5584\uFF0C\u81EA\u7136\u6709\u5584\u62A5\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 4
+    next: 5
+    text: "\u6211\u4E0D\u4FE1\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 5
+    next: 6
+    text: "\u6211\u7231\u72EC\u5904\uFF0C\u4ED6\u4EEC\u8BF4\u6211\u75C5\u4E86\uFF0C\u4EC0\u4E48\u201C\u5FE7\u90C1\u75C7\u201D\uFF0C\u90A3\u660E\u660E\u53EB\u201C\u6291\u90C1\u201D\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 6
+    next: 7
+    text: "\u53EA\u662F\u56E0\u4E3A\u6211\u4E0D\u613F\u610F\u548C\u5E7C\u7A1A\u9B3C\u4EA4\u670B\u53CB\uFF0C\u53EA\u662F\u56E0\u4E3A\u6211\u8001\u8BF4\u4E00\u4E9B\u4ED6\u4EEC\u89C9\u5F97\u83AB\u540D\u5176\u5999\u7684\u8BDD\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 7
+    next: 8
+    text: "\u90A3\u5929\u4E0A\u8BFE\uFF0C\u8001\u5E08\u95EE\u6211\u559C\u6B22\u54EA\u4E2A\u4F5C\u5BB6\uFF0C\u6211\u8BF4\u9C81\u8FC5\uFF0C\u4ED6\u4EEC\u90FD\u7B11\uFF0C\r"
+    isDone: 0
+    type: 0
+  - id: 8
+    next: 9
+    text: "\u4ED6\u4EEC\u5BF9\u8FD9\u4F1F\u5927\u7684\u601D\u60F3\u5BB6\u6559\u80B2\u5BB6\u4E0D\u5C51\u4E00\u987E\uFF0C\u5176\u5B9E\u53EA\u662F\u6CA1\u6709\u5B66\u8FC7\u4EC0\u4E48\u53EB\u505A\u5C0A\u91CD\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 9
+    next: 10
+    text: "\u4E0D\u5C0A\u91CD\u4F1F\u4EBA\uFF0C\u66F4\u4E0D\u5C0A\u91CD\u6211\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 10
+    next: 11
+    text: "\u4ED6\u4EEC\u4E0D\u4FE1\uFF0C\u6211\u53C8\u8BF4\u52A0\u7F2A\uFF0C\u4ED6\u4EEC\u53C8\u4E0D\u8BA4\u8BC6\uFF0C\u53EF\u7B11\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 11
+    next: 12
+    text: "\u6211\u8981\u4EC0\u4E48\u610F\u4E49\uFF1F\u6DE4\u9752\u5C31\u662F\u610F\u4E49\u5417\uFF1F\u5BF9\u674E\u4FCA\u6D9B\u4ED6\u4EEC\u8FD9\u79CD\u4EBA\u6765\u8BF4\u53EF\u80FD\u662F\u5427\uFF0C\u90A3\u5BF9\u6211\u5462\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 12
+    next: 13
+    text: "\u90D1\u4E49\u4FDD\u62A4\u6211\uFF1F\u4ED6\u662F\u4E3A\u4E86\u4FDD\u62A4\u6211\u5417\uFF1F\u4E0D\u5C31\u662F\u65E0\u5904\u5B89\u653E\u7684\u4FDD\u62A4\u6B32\u5417\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 13
+    next: 14
+    text: "\u559C\u6B22\u5448\u82F1\u96C4\uFF1F\u5230\u6700\u540E\u4E0D\u8FD8\u662F\u88AB\u627E\u5BB6\u957F\u9A82\u4E00\u987F\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 14
+    next: 15
+    text: "\u800C\u6211\u5462\uFF1F\u88AB\u6293\u6765\u5FC3\u7406\u54A8\u8BE2\u5BA4\uFF0C\u50CF\u95EE\u4E09\u5C81\u5C0F\u5B69\u4E00\u6837\u95EE\u6211\uFF1A\r"
+    isDone: 0
+    type: 0
+  - id: 15
+    next: 16
+    text: "\u540C\u5B66\uFF0C\u600E\u4E48\u4E0D\u9AD8\u5174\u5440\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 16
+    next: 17
+    text: "\u540C\u5B66\uFF1F\u600E\u4E48\u4E0D\u8BF4\u8BDD\u5440\uFF1F\u3001\r"
+    isDone: 0
+    type: 0
+  - id: 17
+    next: 18
+    text: "\u540C\u5B66\uFF1F\u540C\u5B66\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 18
+    next: 19
+    text: "\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u54C8\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 19
+    next: 20
+    text: "\u6211\u592A\u559C\u6B22\u52A0\u7F2A\u4E86\uFF0C\u8FD9\u8352\u8BDE\u7684\uFF0C\u75DB\u82E6\u7684\uFF0C\u75AF\u72C2\u7684\uFF0C\u4E0D\u516C\u7684\uFF0C\u6076\u5FC3\u7684\uFF0C\u80AE\u810F\u7684\uFF0C\u72D7\u5C41\u7684\uFF0C\u4E16\u754C\u554A\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 20
+    next: 21
+    text: "\u6211\u6068\u554A\u3002\u7238\u7238\u4E0D\u56DE\u5BB6\u6765\u602A\u6211\u5417\uFF1F\u4E3A\u4EC0\u4E48\u88AB\u6253\u7684\u662F\u6211\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 21
+    next: 22
+    text: "\u602A\u6211\u5988\uFF1F\u5979\u51ED\u4EC0\u4E48\u517B\u6D3B\u6211\u7684\u96BE\u9053\u6211\u4E0D\u77E5\u9053\u5417\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 22
+    next: 23
+    text: "\u4E3A\u4EC0\u4E48\uFF0C\u4E3A\u4EC0\u4E48\u6211\u4EEC\u8981\u88AB\u4F60\u4EEC\u9A82\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 23
+    next: 24
+    text: "\u4E0D\u662F\u8BF4\u52AA\u529B\u8BFB\u4E66\u5C31\u597D\u4E86\u5417\uFF1F\u90A3\u4F60\u4EEC\u5462\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 24
+    next: 25
+    text: "\u4F60\u4EEC\u4E3A\u4EC0\u4E48\u4E0D\u7528\u8BFB\u4E66\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 25
+    next: 26
+    text: "\u674E\u4FCA\u6D9B\uFF1F\u6211\u95EE\u4F60\u5462\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 26
+    next: 27
+    text: "\u5BCC\u4E8C\u4EE3\u5F88\u723D\u662F\u5427\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 27
+    next: 28
+    text: "\u65E0\u6240\u4E8B\u4E8B\u5C31\u53EF\u4EE5\u60F3\u8981\u4EC0\u4E48\u5C31\u6709\u4EC0\u4E48\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 28
+    next: 29
+    text: "\u5012\u6570\u7B2C\u4E00\u4E5F\u53EF\u4EE5\u60F3\u8981\u4EC0\u4E48\u5C31\u6709\u4EC0\u4E48\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 29
+    next: 30
+    text: "\u4F60\u4ED6\u5988\u51ED\u4EC0\u4E48\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 30
+    next: 31
+    text: "\u6709\u94B1\u5C31\u80FD\u8BA9\u4E00\u5E2E\u5C0F\u5F1F\u8DDF\u7740\u4F60\r"
+    isDone: 0
+    type: 0
+  - id: 31
+    next: 32
+    text: "\u534A\u4E2A\u73ED\u7684\u4EBA\u90FD\u8DDF\u4F60\u4E00\u6837\u6DF7\u793E\u4F1A\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 32
+    next: 33
+    text: "\u6211\u6068\u554A\u3002\u4F60\u4EEC\u8FD9\u5E2E\u90BB\u5C45\u80FD\u8DDF\u6211\u4EEC\u4F4F\u4E00\u8D77\r"
+    isDone: 0
+    type: 0
+  - id: 33
+    next: 34
+    text: "\u6709\u4EC0\u4E48\u8138\u8BF4\u95F2\u8BDD\u554A\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 34
+    next: 35
+    text: "\u4F60\u5BB6\u4ED6\u5988\u7684\u5C31\u4E0D\u662F\u5BE1\u5987\uFF1F\u4F60\u5BB6\u5C0F\u5B69\u8DDF\u4ED6\u5988\u674E\u4FCA\u6D9B\u540E\u9762\u5F53\u5C0F\u5F1F\r"
+    isDone: 0
+    type: 0
+  - id: 35
+    next: 36
+    text: "\u6211\u4ED6\u5988\u53EF\u662F\u5E74\u7EA7\u7B2C\u4E00\uFF01\r"
+    isDone: 0
+    type: 0
+  - id: 36
+    next: 37
+    text: "\u6211\u3002\u6068\uFF01\r"
+    isDone: 0
+    type: 0
+  - id: 37
+    next: 38
+    text: "\u4E3A\u4EC0\u4E48\u4ED6\u5988\u7684\u5C31\u4E0D\u80FD\u662F\u4E00\u573A\u865A\u65E0\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 38
+    next: 39
+    text: "\u554A\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 39
+    next: 40
+    text: "\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\u3002\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 40
+    next: 41
+    text: "\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\u3002\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 41
+    next: 42
+    text: "\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\u3002\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\uFF01\r"
+    isDone: 0
+    type: 0
+  - id: 42
+    next: 43
+    text: "\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\uFF01\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\uFF01\r"
+    isDone: 0
+    type: 0
+  - id: 43
+    next: 44
+    text: "\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\uFF01\u71AC\u8FC7\u53BB\u5C31\u597D\u4E86\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 44
+    next: 45
+    text: "\u597D\u5728\u54EA\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 45
+    next: 46
+    text: "\u554A\uFF1F\r"
+    isDone: 0
+    type: 0
+  - id: 46
+    next: 47
+    text: "\u7F62\u4E86\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 47
+    next: 48
+    text: "\u5FC3\u9759\u81EA\u7136\u51C9\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 48
+    next: 49
+    text: "\u8001\u5E08\uFF0C\u6211\u597D\u4E86\uFF0C\u6211\u5148\u56DE\u53BB\u4E0A\u8BFE\u4E86\u3002\r"
+    isDone: 0
+    type: 0
+  - id: 49
+    next: 50
+    text: "\r"
+    isDone: 0
+    type: 0
+  - id: 50
+    next: 51
+    text: "\r"
+    isDone: 0
+    type: 0
+  - id: 51
+    next: 52
+    text: 
+    isDone: 0
+    type: 0

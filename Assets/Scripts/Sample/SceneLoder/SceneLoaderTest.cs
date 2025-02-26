@@ -1,5 +1,4 @@
-﻿using System;
-using Framework.Singleton.SceneLoader;
+﻿using Framework.Singleton.SceneLoader;
 using UnityEngine;
 using DG.Tweening;
 

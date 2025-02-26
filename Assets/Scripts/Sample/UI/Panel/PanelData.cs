@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Framework.UI.Base;
-using Framework.DataPersistence;
-using System.IO;
 using System.Reflection;
 using UnityEngine;
 using TMPro;
-using UnityEditor;
 using Utilities;
 
 namespace Sample.UI.Panel
