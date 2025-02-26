@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Framework.Singleton;
 using UnityEngine;
-using Utilities;
 
 namespace Framework.EDA
 {

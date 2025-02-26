@@ -1,7 +1,8 @@
 using Config;
 using Framework.Audio;
-using Framework.DataPersistence;
 using Framework.EDA;
+using Framework.Factory;
+using Framework.PoolFactory;
 using Framework.UI;
 using Framework.UI.Enum;
 using Sample.SceneLoder;
@@ -70,12 +71,27 @@ namespace Sample
                     break;
             }
         }
+
+
+        void PoolFactoryUpdater()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                // MonoFactory<MonoProduct> factory = new MonoFactory<MonoProduct>();
+                // MonoProduct product = FactoryManager.Instance.Create<MonoProduct>();
+                // MonoPool<MonoProduct> monoProductPool = new MonoPool<MonoProduct>(product, null);
+                // PoolManager.Instance.Get<MonoProduct>().DoSomething();
+                MonoPoolFactory<MonoProduct> poolFactory = new MonoPoolFactory<MonoProduct>();
+                poolFactory.Get().DoSomething();
+            }
+        }
+
         void Start()
         {
             uiMgr = UIMgr.Instance;
             uiMgr.LoadPanel(UIType.PanelInfo);
             PlayerBGMWhenSceneIsLoaded(SceneManager.GetActiveScene().buildIndex);
-            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad,PlayerBGMWhenSceneIsLoaded);
+            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad, PlayerBGMWhenSceneIsLoaded);
         }
 
         void Update()
@@ -83,6 +99,7 @@ namespace Sample
             UIUpdater();
             StateMachineUpdater();
             SceneLoaderUpdater();
+            PoolFactoryUpdater();
         }
     }
 }
