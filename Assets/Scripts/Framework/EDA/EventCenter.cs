@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Framework.Singleton;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace Framework.EDA
 {
     public class EventCenter : Singleton<EventCenter>
@@ -15,15 +15,6 @@ namespace Framework.EDA
          * 订阅事件时，需要给Subscribe传入泛型参数，并传入回调函数
          */
         private readonly Dictionary<EventEnum, IEvent> eventsDic = new();
-
-        private EDA_Event<int> onSceneLoad = new EDA_Event<int>();
-        private EDA_Event<string> onPlayerStateChanged = new EDA_Event<string>();
-
-        public EventCenter()
-        {
-            Register(EventEnum.OnSceneLoad, onSceneLoad);
-            Register(EventEnum.OnPlayerStateChanged, onPlayerStateChanged);
-        }
 
         #region 注册事件
 

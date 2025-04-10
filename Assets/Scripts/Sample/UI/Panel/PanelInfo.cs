@@ -14,8 +14,8 @@ namespace Sample.UI.Panel
         {
             sceneNameText = transform.GetChild(0).GetComponent<TMP_Text>();
             playerStateText = transform.GetChild(1).GetComponent<TMP_Text>();
-            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad, UpdateSceneNameText);
-            EventCenter.Instance.Subscribe<string>(EventEnum.OnPlayerStateChanged, UpdatePlayerStateText);
+            EventCenter.Instance.Subscribe<int>(EventEnum.SceneLoad, UpdateSceneNameText);
+            EventCenter.Instance.Subscribe<string>(EventEnum.PlayerStateChanged, UpdatePlayerStateText);
         }
 
         void Start()
@@ -31,8 +31,8 @@ namespace Sample.UI.Panel
 
         public override void Exit()
         {
-            EventCenter.Instance.Unsubscribe<int>(EventEnum.OnSceneLoad, UpdateSceneNameText);
-            EventCenter.Instance.Unsubscribe<string>(EventEnum.OnPlayerStateChanged, UpdatePlayerStateText);
+            EventCenter.Instance.Unsubscribe<int>(EventEnum.SceneLoad, UpdateSceneNameText);
+            EventCenter.Instance.Unsubscribe<string>(EventEnum.PlayerStateChanged, UpdatePlayerStateText);
         }
 
 
