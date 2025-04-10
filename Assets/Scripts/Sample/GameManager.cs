@@ -91,7 +91,7 @@ namespace Sample
             uiMgr = UIMgr.Instance;
             uiMgr.LoadPanel(UIType.PanelInfo);
             PlayerBGMWhenSceneIsLoaded(SceneManager.GetActiveScene().buildIndex);
-            EventCenter.Instance.Subscribe<int>(EventEnum.SceneLoad, PlayerBGMWhenSceneIsLoaded);
+            EventCenter.Instance.AddListener<int>(EventEnum.SceneLoad, PlayerBGMWhenSceneIsLoaded);
         }
 
         void Update()
