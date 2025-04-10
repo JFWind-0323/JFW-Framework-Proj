@@ -156,7 +156,7 @@ namespace Framework.EDA
                 return;
             }
 
-            if (ConditionCenter.Instance.CheckCondition(enterCondition))
+            if (ConditionCenter.Instance.Check(enterCondition))
             {
                 onCollisionEnter.Invoke();
             }
@@ -170,7 +170,7 @@ namespace Framework.EDA
                 return;
             }
 
-            if (ConditionCenter.Instance.CheckCondition(exitCondition))
+            if (ConditionCenter.Instance.Check(exitCondition))
             {
                 onCollisionExit.Invoke();
             }
