@@ -15,6 +15,7 @@ namespace Framework.StateMachine.Base
         public TState[] stateList;
         public TState currentState;
         public Dictionary<Type, TState> stateTable;
+        private EDA_Event OnPlayerStateChanged;
         public virtual void Awake()
         {
             stateTable = new Dictionary<Type, TState>(stateList.Length);
@@ -22,6 +23,7 @@ namespace Framework.StateMachine.Base
         }
         public virtual void Initialize(string stateSOPath)
         {
+            EventCenter.Instance.Register(EventEnum.PlayerStateChanged, OnPlayerStateChanged);
             if (stateSOPath == string.Empty)
             {
                 Debug.LogError("未设置状态列表SO路径");
@@ -86,7 +88,7 @@ namespace Framework.StateMachine.Base
             }
             currentState.Exit();
             SwitchOn(newState);
-            EventCenter.Instance.Invoke(EventEnum.OnPlayerStateChanged, newState.stateName);
+            EventCenter.Instance.Invoke(EventEnum.PlayerStateChanged, newState.stateName);
         }
 
         public void SwitchState(Type state_type)

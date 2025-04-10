@@ -17,13 +17,13 @@ namespace Sample
         public PlayerStateMachine playerStateMachine;
         public AudioConfig audioConfig;
         private UIMgr uiMgr;
-        private bool IsTabAvtive;
+        private bool IsTabActive;
 
 
         void UIUpdater()
         {
             if (!Input.GetKeyDown(KeyCode.Tab)) return;
-            if (IsTabAvtive)
+            if (IsTabActive)
             {
                 uiMgr.PopAll();
             }
@@ -32,7 +32,7 @@ namespace Sample
                 uiMgr.PushPanel(UIType.PanelData);
             }
 
-            IsTabAvtive = !IsTabAvtive;
+            IsTabActive = !IsTabActive;
         }
 
         void StateMachineUpdater()
@@ -91,7 +91,7 @@ namespace Sample
             uiMgr = UIMgr.Instance;
             uiMgr.LoadPanel(UIType.PanelInfo);
             PlayerBGMWhenSceneIsLoaded(SceneManager.GetActiveScene().buildIndex);
-            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad, PlayerBGMWhenSceneIsLoaded);
+            EventCenter.Instance.Subscribe<int>(EventEnum.SceneLoad, PlayerBGMWhenSceneIsLoaded);
         }
 
         void Update()
