@@ -12,21 +12,21 @@ namespace Editor
     // 定义数据类型枚举
     public enum DataType
     {
-        GameData = 0,
-        PlayerData = 1,
-        LevelData = 2,
+        GameConfig = 0,
+        PlayerConfig = 1,
+        LevelConfig = 2,
         AudioConfig = 3
         //切记在下方添加Switch进行筛选
     }
 
     // 数据编辑器窗口类，继承自OdinMenuEditorWindow
-    public class CusdomEditorWindow : OdinMenuEditorWindow
+    public class ConfigEditorWindow : OdinMenuEditorWindow
     {
         // 在菜单栏中添加选项以打开窗口
         [MenuItem("Tools / Cusdom Editor")]
         public static void OpenWindow()
         {
-            GetWindow<CusdomEditorWindow>().Show();
+            GetWindow<ConfigEditorWindow>().Show();
         }
 
         // 创建数据资产的实例
@@ -120,9 +120,9 @@ namespace Editor
         {
             data = dataType switch
             {
-                DataType.GameData => ScriptableObject.CreateInstance<GameData>(),
-                DataType.PlayerData => ScriptableObject.CreateInstance<PlayerData>(),
-                DataType.LevelData => ScriptableObject.CreateInstance<LevelData>(),
+                DataType.GameConfig => ScriptableObject.CreateInstance<GameConfig>(),
+                DataType.PlayerConfig => ScriptableObject.CreateInstance<PlayerConfig>(),
+                DataType.LevelConfig => ScriptableObject.CreateInstance<LevelConfig>(),
                 DataType.AudioConfig => ScriptableObject.CreateInstance<AudioConfig>(),
                 _ => throw new InvalidOperationException($"不支持的数据种类: {dataType}，请添加switch分支")
             };
