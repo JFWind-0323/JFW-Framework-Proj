@@ -24,7 +24,7 @@ namespace Framework.DataPersistence
         /// </summary>
         /// <param name="data">要保存的数据字典。</param>
         /// <param name="fileName">保存的文件名。</param>
-        public void SaveData(Dictionary<string, object> data, string fileName)
+        public void SaveDictData(Dictionary<string, object> data, string fileName)
         {
             if (data == null)
             {
@@ -62,7 +62,7 @@ namespace Framework.DataPersistence
         /// </summary>
         /// <param name="fileName">要加载的文件名。</param>
         /// <returns>加载到的数据字典，如果文件不存在或发生错误则返回null。</returns>
-        public Dictionary<string, object> LoadData(string fileName)
+        public Dictionary<string, object> LoadDictData(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {

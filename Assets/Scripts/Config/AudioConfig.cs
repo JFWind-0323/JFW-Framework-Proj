@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Config
 {
-    [CreateAssetMenu(fileName = "AudioConfig", menuName = "SO/Data/GameData", order = 0)]
+    [CreateAssetMenu(fileName = "AudioConfig", menuName = "SO/Data/GameConfig", order = 0)]
     public class AudioConfig : ScriptableObject, ISerializationCallbackReceiver
     {
         [ShowInInspector]
