@@ -1,6 +1,7 @@
 using Config;
 using Framework.StateMachine.Base;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Sample.StateMachine
@@ -8,7 +9,7 @@ namespace Sample.StateMachine
     public class PlayerState : GenericState<PlayerState>
     {
         
-        public PlayerData playerData;
+        [FormerlySerializedAs("playerData")] public PlayerConfig playerConfig;
         [Range(0f, 1f)] public float duration;
         protected int stateHash => Animator.StringToHash(stateName);
         protected Animator animator;
@@ -23,7 +24,7 @@ namespace Sample.StateMachine
         public override void Enter()
         {
             animator.Play(stateHash);
-            stateMachine.gameObject.GetComponent<Image>().color =playerData.color;
+            stateMachine.gameObject.GetComponent<Image>().color =playerConfig.color;
         }
 
         public override void Exit()

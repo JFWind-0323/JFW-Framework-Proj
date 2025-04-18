@@ -2,8 +2,8 @@
 
 namespace Config
 {
-    [CreateAssetMenu(fileName = "LevelData", menuName = "SO/Data/LevelData", order = 0)]
-    public class LevelData : ScriptableObject
+    [CreateAssetMenu(fileName = "LevelConfig", menuName = "SO/Data/LevelConfig", order = 0)]
+    public class LevelConfig : ScriptableObject
     {
         public string levelName;
         public int levelNumber;
