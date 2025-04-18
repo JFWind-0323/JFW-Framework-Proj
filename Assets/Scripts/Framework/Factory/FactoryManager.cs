@@ -12,8 +12,8 @@ namespace Framework.Factory
         /// <summary>
         /// 注册工厂
         /// </summary>
-        /// <param name="factory">工厂</param>
-        /// <typeparam name="T">产品对象类型</typeparam>
+        /// <param dataName="factory">工厂</param>
+        /// <typeparam dataName="T">产品对象类型</typeparam>
         public void RegisterFactory<T>(IFactory<T> factory) where T : IProduct
         {
             // Debug.Log(factory);
@@ -25,7 +25,7 @@ namespace Framework.Factory
         /// <summary>
         /// 创建产品对象
         /// </summary>
-        /// <typeparam name="T">产品对象类型</typeparam>
+        /// <typeparam dataName="T">产品对象类型</typeparam>
         /// <returns> 创建的对象 </returns>
         /// <exception cref="ArgumentException"> 该类型未注册工厂 </exception>
         public T Create<T>()

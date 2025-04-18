@@ -25,7 +25,7 @@
         /// <summary>
         /// 回收对象
         /// </summary>
-        /// <param name="product"></param>
+        /// <param dataName="product"></param>
         public override void Return(IPoolable product)
         {
             product.Disable();
