@@ -11,8 +11,8 @@ namespace Framework.ObjectPool
         /// <summary>
         /// 注册对象池
         /// </summary>
-        /// <param name="pool">对象池</param>
-        /// <typeparam name="T">对象类型</typeparam>
+        /// <param dataName="pool">对象池</param>
+        /// <typeparam dataName="T">对象类型</typeparam>
         public void RegisterPool<T>(IPool<IPoolable> pool) where T : IPoolable
         {
             if (!Pools.ContainsKey(typeof(T)))
@@ -22,7 +22,7 @@ namespace Framework.ObjectPool
         /// <summary>
         /// 获取对象池
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
+        /// <typeparam dataName="T">对象类型</typeparam>
         /// <returns></returns>
         public IPool<T> GetPool<T>() where T : IPoolable
         {
@@ -37,7 +37,7 @@ namespace Framework.ObjectPool
         /// <summary>
         /// 获取对象
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
+        /// <typeparam dataName="T">对象类型</typeparam>
         /// <returns></returns>
         public T Get<T>() where T : IPoolable
         {
@@ -54,8 +54,8 @@ namespace Framework.ObjectPool
         /// <summary>
         /// 回收对象
         /// </summary>
-        /// <param name="obj">对象</param>
-        /// <typeparam name="T"></typeparam>
+        /// <param dataName="obj">对象</param>
+        /// <typeparam dataName="T"></typeparam>
         public void Return<T>(IPoolable obj) where T : IPoolable
         {
             Pools[typeof(T)].Return(obj);

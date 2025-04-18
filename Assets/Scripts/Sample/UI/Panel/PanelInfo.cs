@@ -9,6 +9,7 @@ namespace Sample.UI.Panel
     {
         private TMP_Text sceneNameText;
         private TMP_Text playerStateText;
+        
         private EDA_Event<int> onSceneLoaded;
         private EDA_Event<string> onPlayerStateChanged;
 
@@ -16,6 +17,7 @@ namespace Sample.UI.Panel
         {
             sceneNameText = transform.GetChild(0).GetComponent<TMP_Text>();
             playerStateText = transform.GetChild(1).GetComponent<TMP_Text>();
+            
             EventCenter.Instance.Register(EventEnum.SceneLoad, onSceneLoaded);
             EventCenter.Instance.Register(EventEnum.PlayerStateChanged, onPlayerStateChanged);
             

@@ -70,7 +70,7 @@ namespace Framework.UI
                     dicPath[item.name] = $"Prefabs/UIPrefab/{item.name}";
                 else
                     dicPath.Add(item.name, $"Prefabs/UIPrefab/{item.name}");
-                //Debug.Log(item.name);
+                //Debug.Log(item.dataName);
             }
         }
 
@@ -129,7 +129,7 @@ namespace Framework.UI
         /// <summary>
         ///     加载面板，不入栈
         /// </summary>
-        /// <param name="panelType"> 面板种类 </param>
+        /// <param dataName="panelType"> 面板种类 </param>
         public void LoadPanel(UIType panelType)
         {
             var type = panelType.ToString();
@@ -149,7 +149,7 @@ namespace Framework.UI
         /// <summary>
         ///     打开面板，入栈
         /// </summary>
-        /// <param name="panelType"> 面板种类 </param>
+        /// <param dataName="panelType"> 面板种类 </param>
         public void PushPanel(UIType panelType)
         {
             if (stackPanel == null)

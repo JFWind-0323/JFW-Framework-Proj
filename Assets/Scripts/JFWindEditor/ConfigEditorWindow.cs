@@ -1,13 +1,13 @@
-﻿using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities.Editor;
-using Sirenix.OdinInspector;
-using UnityEditor;
-using UnityEngine;
-using System;
+﻿using System;
 using System.Reflection;
 using Config;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
-namespace Editor
+namespace JFWindEditor
 {
     // 定义数据类型枚举
     public enum DataType
@@ -78,10 +78,10 @@ namespace Editor
                 Type screenType = assembly.GetType($"{configAsset.nameSpace}.{dataType.ToString()}");
                 if (screenType == null)
                 {
-                    Debug.LogError($"Can't find screen type {configAsset.nameSpace}.{dataType.ToString()}");
+                    Debug.LogError($"Can't find screen textDataType {configAsset.nameSpace}.{dataType.ToString()}");
                     break;
                 }
-
+            
                 // 添加所有路径下的数据资产，并按名称排序
                 var assets =
                     mainMenu.AddAllAssetsAtPath($"Data/{screenType.Name}", "Assets/Resources/SO", screenType);

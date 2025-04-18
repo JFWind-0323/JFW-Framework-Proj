@@ -1,13 +1,13 @@
 ﻿using System;
-using Sirenix.Utilities.Editor;
+using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using System.Reflection;
+using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
 
-namespace Editor
+namespace JFWindEditor
 {
     public enum StateType
     {
