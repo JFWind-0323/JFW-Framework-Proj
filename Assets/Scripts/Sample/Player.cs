@@ -1,12 +1,13 @@
 using Config;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Sample
 {
     public class Player : MonoBehaviour
     {
-        public PlayerData playerData;
+        [FormerlySerializedAs("playerData")] public PlayerConfig playerConfig;
         private Image image;
         private MeshRenderer meshRenderer;
         void Awake()
@@ -16,7 +17,7 @@ namespace Sample
         }
         void Start()
         {
-            meshRenderer.material= playerData.playerMaterial;
+            meshRenderer.material= playerConfig.playerMaterial;
         }
 
  
