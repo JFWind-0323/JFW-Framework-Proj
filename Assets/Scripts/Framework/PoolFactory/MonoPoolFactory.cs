@@ -6,8 +6,16 @@ namespace Framework.PoolFactory
 {
     public class MonoPoolFactory<T> : AbstractPoolFactory<T> where T : MonoBehaviour, IPoolableProduct
     {
-        public MonoPoolFactory(T prefab=null, Transform parent = null, params object[] args) : base(args)
+        public MonoPoolFactory(params object[] args) : base(args)
         {
+            T prefab = null;
+            Transform parent = null;
+            if (args.Length >= 2)
+            {
+                prefab = args[0] as T;
+                parent = args[1] as Transform;
+            }
+
             pool = new MonoPool<T>(prefab, parent);
             factory = new MonoFactory<T>(parent, args);
         }
@@ -20,7 +28,11 @@ namespace Framework.PoolFactory
 
         public override T Get()
         {
-            Create();
+            if (pool.Count == 0)
+            {
+                Create();
+            }
+
             return pool.Get();
         }
 
@@ -28,5 +40,6 @@ namespace Framework.PoolFactory
         {
             pool.Return(obj);
         }
+        
     }
 }

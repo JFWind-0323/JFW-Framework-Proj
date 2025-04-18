@@ -63,6 +63,11 @@ namespace Framework.Singleton
         {
             
         }
+
+        public void Refresh()
+        {
+            WhenInit();
+        }
         
     }
 }
