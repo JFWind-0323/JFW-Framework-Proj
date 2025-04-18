@@ -9,13 +9,18 @@ namespace Sample.UI.Panel
     {
         private TMP_Text sceneNameText;
         private TMP_Text playerStateText;
+        private EDA_Event<int> onSceneLoaded;
+        private EDA_Event<string> onPlayerStateChanged;
 
         void Awake()
         {
             sceneNameText = transform.GetChild(0).GetComponent<TMP_Text>();
             playerStateText = transform.GetChild(1).GetComponent<TMP_Text>();
-            EventCenter.Instance.Subscribe<int>(EventEnum.OnSceneLoad, UpdateSceneNameText);
-            EventCenter.Instance.Subscribe<string>(EventEnum.OnPlayerStateChanged, UpdatePlayerStateText);
+            EventCenter.Instance.Register(EventEnum.SceneLoad, onSceneLoaded);
+            EventCenter.Instance.Register(EventEnum.PlayerStateChanged, onPlayerStateChanged);
+            
+            EventCenter.Instance.AddListener<int>(EventEnum.SceneLoad, UpdateSceneNameText);
+            EventCenter.Instance.AddListener<string>(EventEnum.PlayerStateChanged, UpdatePlayerStateText);
         }
 
         void Start()
@@ -31,8 +36,8 @@ namespace Sample.UI.Panel
 
         public override void Exit()
         {
-            EventCenter.Instance.Unsubscribe<int>(EventEnum.OnSceneLoad, UpdateSceneNameText);
-            EventCenter.Instance.Unsubscribe<string>(EventEnum.OnPlayerStateChanged, UpdatePlayerStateText);
+            EventCenter.Instance.RemoveListener<int>(EventEnum.SceneLoad, UpdateSceneNameText);
+            EventCenter.Instance.RemoveListener<string>(EventEnum.PlayerStateChanged, UpdatePlayerStateText);
         }
 
 

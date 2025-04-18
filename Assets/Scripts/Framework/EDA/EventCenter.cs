@@ -14,16 +14,10 @@ namespace Framework.EDA
          * 请将所有事件都注册在事件中心的构造函数中，需要时调用\
          * 订阅事件时，需要给Subscribe传入泛型参数，并传入回调函数
          */
-        private readonly Dictionary<EventEnum, IEvent> eventsDic = new();
-
-        private EDA_Event<int> onSceneLoad = new EDA_Event<int>();
-        private EDA_Event<string> onPlayerStateChanged = new EDA_Event<string>();
-
-        public EventCenter()
+        private readonly Dictionary<EventEnum, IEvent> eventsDic = new()
         {
-            Register(EventEnum.OnSceneLoad, onSceneLoad);
-            Register(EventEnum.OnPlayerStateChanged, onPlayerStateChanged);
-        }
+            { EventEnum.None, new EDA_Event() },
+        };
 
         #region 注册事件
 
@@ -37,7 +31,7 @@ namespace Framework.EDA
         {
             newEvent ??= Activator.CreateInstance<T>();
             if (eventsDic.TryAdd(eventEnum, newEvent))
-                Debug.Log("新事件注册" + eventEnum);
+                Debug.Log("新事件：" + eventEnum + "注册成功");
         }
 
         /// <summary>
@@ -49,7 +43,7 @@ namespace Framework.EDA
         public void UnRegister<T>(EventEnum eventEnum, T oldEvent) where T : IEvent
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
-            Debug.Log("取消注册" + eventEnum);
+            Debug.Log("事件：" + eventEnum + " 注销成功");
             eventsDic.Remove(eventEnum);
         }
 
@@ -62,16 +56,23 @@ namespace Framework.EDA
         /// </summary>
         /// <param name="eventEnum">事件枚举</param>
         /// <param name="call">回调函数</param>
-        public void Subscribe(EventEnum eventEnum, Action call)
+        public void AddListener(EventEnum eventEnum, Action call)
         {
             if (!eventsDic.ContainsKey(eventEnum))
             {
-                Debug.Log("未注册事件" + eventEnum);
+                Debug.LogError("未注册事件" + eventEnum);
                 return;
             }
 
-            Debug.Log("订阅事件" + eventEnum);
-            ((EDA_Event)eventsDic[eventEnum]).action += call;
+            Debug.Log("事件" + eventEnum + " 订阅成功");
+            try
+            {
+                ((EDA_Event)eventsDic[eventEnum]).action += call;
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError("委托类型不匹配，请检查类型是否正确");
+            }
         }
 
         /// <summary>
@@ -80,16 +81,23 @@ namespace Framework.EDA
         /// <param name="eventEnum">事件枚举</param>
         /// <param name="call">回调函数</param>
         /// <typeparam name="T"></typeparam>
-        public void Subscribe<T>(EventEnum eventEnum, Action<T> call)
+        public void AddListener<T>(EventEnum eventEnum, Action<T> call)
         {
             if (!eventsDic.ContainsKey(eventEnum))
             {
-                Debug.Log("未注册事件" + eventEnum);
+                Debug.LogError("未注册事件" + eventEnum);
                 return;
             }
 
-            Debug.Log("订阅事件" + eventEnum);
-            ((EDA_Event<T>)eventsDic[eventEnum]).action += call;
+            Debug.Log("事件" + eventEnum + " 订阅成功");
+            try
+            {
+                ((EDA_Event<T>)eventsDic[eventEnum]).action += call;
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError($"委托类型不匹配，请检查事件：{eventEnum}");
+            }
         }
 
         /// <summary>
@@ -99,16 +107,23 @@ namespace Framework.EDA
         /// <param name="call">回调函数</param>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
-        public void Subscribe<T1, T2>(EventEnum eventEnum, Action<T1, T2> call)
+        public void AddListener<T1, T2>(EventEnum eventEnum, Action<T1, T2> call)
         {
             if (!eventsDic.ContainsKey(eventEnum))
             {
-                Debug.Log("未注册事件" + eventEnum);
+                Debug.LogError("未注册事件" + eventEnum);
                 return;
             }
 
-            Debug.Log("订阅事件" + eventEnum);
-            ((EDA_Event<T1, T2>)eventsDic[eventEnum]).action += call;
+            Debug.Log("事件" + eventEnum + " 订阅成功");
+            try
+            {
+                ((EDA_Event<T1, T2>)eventsDic[eventEnum]).action += call;
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError($"委托类型不匹配，请检查事件：{eventEnum}");
+            }
         }
 
         /// <summary>
@@ -119,16 +134,23 @@ namespace Framework.EDA
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
-        public void Subscribe<T1, T2, T3>(EventEnum eventEnum, Action<T1, T2, T3> call)
+        public void AddListener<T1, T2, T3>(EventEnum eventEnum, Action<T1, T2, T3> call)
         {
             if (!eventsDic.ContainsKey(eventEnum))
             {
-                Debug.Log("未注册事件" + eventEnum);
+                Debug.LogError("未注册事件" + eventEnum);
                 return;
             }
 
-            Debug.Log("订阅事件" + eventEnum);
-            ((EDA_Event<T1, T2, T3>)eventsDic[eventEnum]).action += call;
+            Debug.Log("事件" + eventEnum + " 订阅成功");
+            try
+            {
+                ((EDA_Event<T1, T2, T3>)eventsDic[eventEnum]).action += call;
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError($"委托类型不匹配，请检查事件：{eventEnum}");
+            }
         }
 
         /// <summary>
@@ -140,16 +162,23 @@ namespace Framework.EDA
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
-        public void Subscribe<T1, T2, T3, T4>(EventEnum eventEnum, Action<T1, T2, T3, T4> call)
+        public void AddListener<T1, T2, T3, T4>(EventEnum eventEnum, Action<T1, T2, T3, T4> call)
         {
             if (!eventsDic.ContainsKey(eventEnum))
             {
-                Debug.Log("未注册事件" + eventEnum);
+                Debug.LogError("未注册事件" + eventEnum);
                 return;
             }
 
-            Debug.Log("订阅事件" + eventEnum);
-            ((EDA_Event<T1, T2, T3, T4>)eventsDic[eventEnum]).action += call;
+            Debug.Log("事件" + eventEnum + " 订阅成功");
+            try
+            {
+                ((EDA_Event<T1, T2, T3, T4>)eventsDic[eventEnum]).action += call;
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError($"委托类型不匹配，请检查事件：{eventEnum}");
+            }
         }
 
         #endregion
@@ -161,7 +190,7 @@ namespace Framework.EDA
         /// </summary>
         /// <param name="eventEnum"></param>
         /// <param name="call"></param>
-        public void Unsubscribe(EventEnum eventEnum, Action call)
+        public void RemoveListener(EventEnum eventEnum, Action call)
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
             Debug.Log("取消订阅" + eventEnum);
@@ -174,7 +203,7 @@ namespace Framework.EDA
         /// <param name="eventEnum"></param>
         /// <param name="call"></param>
         /// <typeparam name="T"></typeparam>
-        public void Unsubscribe<T>(EventEnum eventEnum, Action<T> call)
+        public void RemoveListener<T>(EventEnum eventEnum, Action<T> call)
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
             Debug.Log("取消订阅" + eventEnum);
@@ -188,7 +217,7 @@ namespace Framework.EDA
         /// <param name="call"></param>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
-        public void Unsubscribe<T1, T2>(EventEnum eventEnum, Action<T1, T2> call)
+        public void RemoveListener<T1, T2>(EventEnum eventEnum, Action<T1, T2> call)
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
             Debug.Log("取消订阅" + eventEnum);
@@ -203,7 +232,7 @@ namespace Framework.EDA
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
-        public void Unsubscribe<T1, T2, T3>(EventEnum eventEnum, Action<T1, T2, T3> call)
+        public void RemoveListener<T1, T2, T3>(EventEnum eventEnum, Action<T1, T2, T3> call)
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
             Debug.Log("取消订阅" + eventEnum);
@@ -219,7 +248,7 @@ namespace Framework.EDA
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
-        public void Unsubscribe<T1, T2, T3, T4>(EventEnum eventEnum, Action<T1, T2, T3, T4> call)
+        public void RemoveListener<T1, T2, T3, T4>(EventEnum eventEnum, Action<T1, T2, T3, T4> call)
         {
             if (!eventsDic.ContainsKey(eventEnum)) return;
             Debug.Log("取消订阅" + eventEnum);

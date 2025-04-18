@@ -9,6 +9,11 @@
         {
             product.Construct(args);
         }
+
+        public void UpdateArgs(params object[] args)
+        {
+            this.args = args;
+        }
     }
 }
 

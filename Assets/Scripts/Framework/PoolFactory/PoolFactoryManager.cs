@@ -24,14 +24,15 @@ namespace Framework.PoolFactory
         /// 通过工厂创建MonoBehaviour对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        public void CreateMono<T>() where T : MonoBehaviour, IPoolableProduct
+        public void CreateMono<T>(params object[] args) where T : MonoBehaviour, IPoolableProduct
         {
             if (!poolFactories.ContainsKey(typeof(T)))
             {
-                MonoPoolFactory<T> monoPoolFactory = new MonoPoolFactory<T>();
+                
+                MonoPoolFactory<T> monoPoolFactory = new MonoPoolFactory<T>( args);
                 RegisterPoolFactory<T>(monoPoolFactory);
             }
-
+            poolFactories[typeof(T)].UpdateArgs(args);
             poolFactories[typeof(T)].Create();
         }
 
@@ -39,14 +40,15 @@ namespace Framework.PoolFactory
         /// 通过工厂创建普通对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        public void CreateStandard<T>() where T : class, IPoolableProduct
+        public void CreateStandard<T>(params object[] args) where T : class, IPoolableProduct
         {
             if (!poolFactories.ContainsKey(typeof(T)))
             {
-                StandardPoolFactory<T> standardPoolFactory = new StandardPoolFactory<T>();
+                StandardPoolFactory<T> standardPoolFactory = new StandardPoolFactory<T>(args);
                 RegisterPoolFactory<T>(standardPoolFactory);
             }
 
+            poolFactories[typeof(T)].UpdateArgs(args);
             poolFactories[typeof(T)].Create();
         }
 
@@ -61,6 +63,7 @@ namespace Framework.PoolFactory
             {
                 CreateMono<T>();
             }
+
             return (T)poolFactories[typeof(T)].Get();
         }
 
@@ -73,7 +76,7 @@ namespace Framework.PoolFactory
         {
             if (!poolFactories.ContainsKey(typeof(T)))
             {
-               CreateStandard<T>();
+                CreateStandard<T>();
             }
 
             return (T)poolFactories[typeof(T)].Get();

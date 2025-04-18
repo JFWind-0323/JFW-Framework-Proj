@@ -15,7 +15,8 @@ namespace Framework.ObjectPool
         /// <typeparam name="T">对象类型</typeparam>
         public void RegisterPool<T>(IPool<IPoolable> pool) where T : IPoolable
         {
-            Pools.Add(typeof(T), pool);
+            if (!Pools.ContainsKey(typeof(T)))
+                Pools.Add(typeof(T), pool);
         }
 
         /// <summary>

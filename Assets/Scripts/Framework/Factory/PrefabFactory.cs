@@ -27,7 +27,7 @@ namespace Framework.Factory
                     prefabDict.Add(targetName, prefab);
                 }
 
-                Debug.Log(targetName);
+                //Debug.Log(targetName);
             }
         }
 
@@ -48,8 +48,7 @@ namespace Framework.Factory
         {
             if (prefabDict.TryGetValue(prefabName, out var value))
             {
-                GameObject.Instantiate(value);
-                return value;
+                return GameObject.Instantiate(value);
             }
 
             Debug.LogWarning("Prefab " + prefabName + " not found ");

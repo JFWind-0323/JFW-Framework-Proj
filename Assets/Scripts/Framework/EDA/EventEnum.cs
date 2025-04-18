@@ -4,7 +4,9 @@
     {
         None,
         Test,
-        OnSceneLoad,
-        OnPlayerStateChanged,
+        SceneLoad,
+        StoryTriggered,
+        PlayerStateChanged,
+        Boxing
     }
 }
