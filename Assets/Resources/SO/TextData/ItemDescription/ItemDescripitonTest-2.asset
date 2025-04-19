@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ec5e2b04b344c88baeddbe0af110b0, type: 3}
+  m_Name: ItemDescripitonTest-2
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: a5b89a4e02372465491a0cb3b946358f, type: 3}
+  lines:
+  - id: 0
+    text: "\u5E93\u8FEA\u5496\u5561"
+    type: 0
+    description: "\u63D0\u795E\u4E0D\u9192\u8111\u4F46\u662F\u4E5D\u5757\u4E5D\r"
+    icon: {fileID: 2800000, guid: 05cfe010378336646ad6c721f66543d1, type: 3}
+  - id: 1
+    text: Mac Mini
+    type: 0
+    description: "\u9EBB\u96C0\u867D\u5C0F\u4E94\u810F\u4FF1\u5168\r"
+    icon: {fileID: 2800000, guid: 05cfe010378336646ad6c721f66543d1, type: 3}
+  sameIcon: 1
+  defaultIcon: {fileID: 2800000, guid: 05cfe010378336646ad6c721f66543d1, type: 3}
+  icons:
+  - {fileID: 2800000, guid: 2a563a43c33f0f3428d02b3a43886fc2, type: 3}
+  - {fileID: 2800000, guid: 05cfe010378336646ad6c721f66543d1, type: 3}

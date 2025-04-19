@@ -16,9 +16,7 @@ MonoBehaviour:
   lines:
   - id: 0
     text: "\u4F60\u597D"
-    next: 1
     type: 0
   - id: 1
     text: "\u5F88\u9AD8\u5174\u89C1\u5230\u4F60"
-    next: 2
     type: 0

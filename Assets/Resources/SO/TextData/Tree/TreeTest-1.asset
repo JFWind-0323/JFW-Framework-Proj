@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f551f2123f364c3c8f2579706ea5e8c2, type: 3}
+  m_Name: TreeTest-1
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: ae76800a90a7747feb8f99ed42191598, type: 3}
+  lines:
+  - id: 0
+    text: "\u4F60\u662F\u5C0F\u674E\u5417"
+    type: 0
+    character: "\u5C0F\u5D14"
+    next: 1
+    position: "\u5DE6"
+  - id: 1
+    text: "\u4E0D\uFF0C\u6211\u662F\u5C0F\u5019"
+    type: 0
+    character: "\u5C0F\u4FAF"
+    next: 2
+    position: "\u53F3"
+  - id: 2
+    text: "\u90A3\u8C01\u662F\u5C0F\u674E\uFF1F"
+    type: 0
+    character: "\u5C0F\u5D14"
+    next: 3
+    position: "\u5DE6"
+  - id: 3
+    text: "\u662F\u6211\uFF0C\u6211\u662F\u5C0F\u674E"
+    type: 3
+    character: "\u5C0F\u674E"
+    next: -1
+    position: "\u4E2D"
+  characters:
+  - "\u5C0F\u5D14"
+  - "\u5C0F\u674E"
+  - "\u5C0F\u4FAF"
+  positions:
+  - "\u5DE6"
+  - "\u4E2D"
+  - "\u53F3"
