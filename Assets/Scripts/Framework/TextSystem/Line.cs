@@ -21,12 +21,14 @@ namespace TextSystem
         /*
          * 自行扩展
          */
-        [TableColumnWidth(60,Resizable = false)] public int id;
+        [TableColumnWidth(60, Resizable = false)]
+        public int id;
 
         [TableColumnWidth(100)] public string text;
 
 
-        [TableColumnWidth(100,Resizable = false)] public LineType type = LineType.Default;
+        [TableColumnWidth(100, Resizable = false)]
+        public LineType type = LineType.Default;
 
         public LineBase(string[] lineFromFile)
         {
@@ -48,9 +50,14 @@ namespace TextSystem
     [Serializable]
     public class LineTree : LineBase
     {
-        [TableColumnWidth(60, Resizable = false)] public string character;
-        [TableColumnWidth(60, Resizable = false)] public int next;
-        [TableColumnWidth(60, Resizable = false)] public string position;
+        [TableColumnWidth(60, Resizable = false)]
+        public string character;
+
+        [TableColumnWidth(60, Resizable = false)]
+        public int next;
+
+        [TableColumnWidth(60, Resizable = false)]
+        public string position;
 
         public LineTree(string[] lineFromFile, string[] characters, string[] positions) : base(lineFromFile)
         {
@@ -89,7 +96,7 @@ namespace TextSystem
         [TableColumnWidth(60, Resizable = false)] [PreviewField(Height = 60, Alignment = ObjectFieldAlignment.Center)]
         public Texture icon;
 
-        
+
         public LineItemDescription(string[] lineFromFile) : base(lineFromFile)
         {
             id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;

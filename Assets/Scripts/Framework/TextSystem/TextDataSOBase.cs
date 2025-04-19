@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TextSystem;
 using UnityEngine;
@@ -11,6 +9,8 @@ namespace Framework.TextSystem
     {
         [HorizontalGroup("File Info")] public TextAsset textAsset;
         [TableList] public List<T> lines = new();
+        
+        protected int currentIndex = 0;
 
 
         [Button("Process Playbook")]
@@ -24,9 +24,19 @@ namespace Framework.TextSystem
         {
         }
 
-        public T GetLine(int index)
+        public T GetCurrentLine()
+        {
+            return lines[currentIndex];
+        }
+
+        public T GetLineByIndex(int index)
         {
             return lines[index];
+        }
+
+        public virtual void UpdateCurrentIndex()
+        {
+            
         }
     }
 }

@@ -1,10 +1,9 @@
 using UnityEngine;
 
-namespace Sample.StateMachine
+namespace Sample.StateMachine.PlayerState
 {
     [CreateAssetMenu(fileName = "New Test State", menuName = "SO/Player State/Player State Test")]
-    public class PlayerStateTest : PlayerState
+    public class PlayerStateTest : PlayerStateBase
     {
-    
     }
 }

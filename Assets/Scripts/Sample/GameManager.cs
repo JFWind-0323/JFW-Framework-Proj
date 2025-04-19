@@ -7,6 +7,7 @@ using Framework.UI;
 using Framework.UI.Enum;
 using Sample.SceneLoder;
 using Sample.StateMachine;
+using Sample.StateMachine.PlayerState;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

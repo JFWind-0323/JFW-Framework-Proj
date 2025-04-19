@@ -23,26 +23,53 @@ MonoBehaviour:
   - id: 1
     text: "\u4E0D\uFF0C\u6211\u662F\u5C0F\u5019"
     type: 0
-    character: "\u5C0F\u4FAF"
+    character: "\u5C0F\u674E"
     next: 2
     position: "\u53F3"
   - id: 2
     text: "\u90A3\u8C01\u662F\u5C0F\u674E\uFF1F"
-    type: 0
+    type: 1
     character: "\u5C0F\u5D14"
     next: 3
     position: "\u5DE6"
   - id: 3
     text: "\u662F\u6211\uFF0C\u6211\u662F\u5C0F\u674E"
+    type: 2
+    character: "\u5C0F\u4FAF"
+    next: 6
+    position: "\u5DE6"
+  - id: 4
+    text: "\u4E0D\u4E0D\u4E0D\uFF0C\u6211\u624D\u662F"
+    type: 2
+    character: "\u5C0F\u68B5"
+    next: 7
+    position: "\u4E2D"
+  - id: 5
+    text: "\u4ED6\u4EEC\u4E24\u4E2A\u90FD\u4E0D\u662F"
+    type: 2
+    character: "\u5C0F\u5218"
+    next: 7
+    position: "\u53F3"
+  - id: 6
+    text: "\u662F\u7684\uFF0C\u4ED6\u662F\u5C0F\u674E"
     type: 3
     character: "\u5C0F\u674E"
     next: -1
-    position: "\u4E2D"
+    position: "\u4E0A"
+  - id: 7
+    text: "\u4F60\u9519\u4E86"
+    type: 3
+    character: "\u5C0F\u674E"
+    next: -1
+    position: "\u4E0A"
   characters:
   - "\u5C0F\u5D14"
   - "\u5C0F\u674E"
   - "\u5C0F\u4FAF"
+  - "\u5C0F\u68B5"
+  - "\u5C0F\u5218"
   positions:
   - "\u5DE6"
   - "\u4E2D"
   - "\u53F3"
+  - "\u4E0A"

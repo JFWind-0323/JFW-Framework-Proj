@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
@@ -15,7 +18,7 @@ namespace JFWindEditor
         GameState
     }
 
-     public class StateMachineEditorWindow : OdinMenuEditorWindow
+    public class StateMachineEditorWindow : OdinMenuEditorWindow
     {
         /*
          * 请注意文件夹结构
@@ -76,13 +79,13 @@ namespace JFWindEditor
 
             foreach (var stateType in Enum.GetValues(typeof(StateType)))
             {
-                Type screenType = assembly.GetType($"{nameSpace}.{stateType}.{stateType}");
+                Type screenType = assembly.GetType($"{nameSpace}.{stateType}.{stateType}Base");
                 Type[] allSubclasses = screenType.GetAllDerivedTypes().ToArray();
-                //allSubclasses.Print();
                 foreach (var subclass in allSubclasses)
                 {
-                    var assets = mainMenu.AddAllAssetsAtPath($"States/{screenType.Name}",
-                        $"Assets/Resources/SO/{screenType.Name}", subclass);
+                    //遍历子类，添加到菜单树
+                    var assets = mainMenu.AddAllAssetsAtPath($"States/{stateType}",
+                        $"Assets/Resources/SO/State/{stateType}", subclass);
                     assets.SortMenuItemsByName();
                 }
             }
@@ -102,21 +105,21 @@ namespace JFWindEditor
 
         #region 状态选择
 
-        [EnumToggleButtons] [OnValueChanged("CreateNewState")]
+        [EnumToggleButtons] [OnValueChanged("UpdateSubclasses")]
         public StateType stateType = StateType.GameState;
 
-        Type screenType => assembly.GetType($"{nameSpace}.{stateType}.{stateType}");
+        Type screenType => assembly.GetType($"{nameSpace}.{stateType}.{stateType}Base");
         Type[] allSubclasses => screenType.GetAllDerivedTypes().ToArray();
 
-        [ShowInInspector] [ValueDropdown("allSubclasses"),OnValueChanged("CreateNewState")]
+        [ShowInInspector] [ValueDropdown("allSubclasses"), OnValueChanged("CreateNewState")]
         public Type selectedSubclass;
 
         #endregion
 
-        [Header("文件名称")] public string fileName;
+        [Header("状态数据文件名称")] public string stateFileName;
 
-        [Header("状态数据")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Boxed)] [ShowInInspector]
-        ScriptableObject currentState;
+        [Header("状态数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Boxed)] 
+        [ShowInInspector] ScriptableObject currentState;
 
 
         public StateMachineEditor(string nameSpace, Assembly assembly)
@@ -128,16 +131,85 @@ namespace JFWindEditor
         }
 
 
-        public void CreateNewState()
+        private void CreateNewState()
         {
             currentState = ScriptableObject.CreateInstance(selectedSubclass);
+        }
+
+        private void UpdateSubclasses()
+        {
+            selectedSubclass = allSubclasses[0];
+            CreateNewState();
         }
 
         [Button("Create New State Asset")]
         private void CreateAsset()
         {
-            AssetDatabase.CreateAsset(currentState, $"Assets/Resources/SO/{fileName}.asset");
-            AssetDatabase.SaveAssets();
+            string folderPath = $"Assets/Resources/SO/State/{stateType}";
+            string fullPath = $"{folderPath}/{stateFileName}.asset";
+
+            try
+            {
+                // 新增路径清洗逻辑
+                folderPath = folderPath.Replace("\\", "/").TrimEnd('/');
+                string[] pathSegments = folderPath.Split('/');
+
+                StringBuilder currentPath = new StringBuilder("Assets");
+                foreach (var segment in pathSegments.Skip(1)) // 跳过初始的Assets
+                {
+                    if (string.IsNullOrWhiteSpace(segment))
+                    {
+                        Debug.LogError("包含空路径段");
+                        return;
+                    }
+
+                    currentPath.Append($"/{segment}");
+
+                    // 新增有效性验证
+                    if (!IsValidFolderName(segment))
+                    {
+                        Debug.LogError($"非法文件夹名称: {segment}");
+                        return;
+                    }
+
+                    // 改进创建逻辑
+                    if (!AssetDatabase.IsValidFolder(currentPath.ToString()))
+                    {
+                        string guid = AssetDatabase.CreateFolder(
+                            Path.GetDirectoryName(currentPath.ToString()),
+                            Path.GetFileName(currentPath.ToString())
+                        );
+
+                        // 新增结果验证
+                        if (string.IsNullOrEmpty(guid))
+                        {
+                            Debug.LogError($"创建失败: {currentPath}");
+                            return;
+                        }
+
+                        // 新增延时刷新
+                        System.Threading.Thread.Sleep(100);
+                        AssetDatabase.Refresh();
+                    }
+                }
+
+                AssetDatabase.CreateAsset(currentState, fullPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"创建失败: {e}");
+            }
+        }
+
+// 新增文件夹名称验证
+        private bool IsValidFolderName(string name)
+        {
+            var invalidChars = Path.GetInvalidFileNameChars();
+            return !name.Any(c => invalidChars.Contains(c)) &&
+                   !name.StartsWith(" ") &&
+                   !name.EndsWith(".");
         }
     }
 }

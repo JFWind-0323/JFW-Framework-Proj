@@ -79,9 +79,9 @@ namespace JFWindEditor
         [EnumToggleButtons] [OnValueChanged("CreateNewTextDataAsset")]
         public TextDataType textDataType = TextDataType.Linear;
 
-        [Header("数据名称")] public string dataName;
+        [Header("文案数据文件名称")] public string dataName;
 
-        [Header("数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
+        [Header("文本数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
         public ScriptableObject data;
 
         public TextDataCreator()
