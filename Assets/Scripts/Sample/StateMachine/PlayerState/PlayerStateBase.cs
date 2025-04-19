@@ -1,15 +1,13 @@
 using Config;
 using Framework.StateMachine.Base;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Sample.StateMachine
+namespace Sample.StateMachine.PlayerState
 {
-    public class PlayerState : GenericState<PlayerState>
+    public class PlayerStateBase : GenericState<PlayerStateBase>
     {
-        
-        [FormerlySerializedAs("playerData")] public PlayerConfig playerConfig;
+        public PlayerConfig playerConfig;
         [Range(0f, 1f)] public float duration;
         protected int stateHash => Animator.StringToHash(stateName);
         protected Animator animator;
@@ -17,14 +15,14 @@ namespace Sample.StateMachine
 
         public override void Init(params object[] args)
         {
-            this.stateMachine = args[0] as StateMachine<PlayerState>;
-            this.animator = args[1] as Animator;
+            stateMachine = args[0] as StateMachine<PlayerStateBase>;
+            animator = args[1] as Animator;
         }
 
         public override void Enter()
         {
             animator.Play(stateHash);
-            stateMachine.gameObject.GetComponent<Image>().color =playerConfig.color;
+            stateMachine.gameObject.GetComponent<Image>().color = playerConfig.color;
         }
 
         public override void Exit()

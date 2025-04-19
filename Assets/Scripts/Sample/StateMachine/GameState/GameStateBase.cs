@@ -2,7 +2,7 @@
 
 namespace Sample.StateMachine.GameState
 {
-    public class GameState:GenericState<GameState>
+    public class GameStateBase:GenericState<GameStateBase>
     {
         public override void Init(params object[] args)
         {

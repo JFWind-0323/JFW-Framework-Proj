@@ -21,5 +21,10 @@ namespace Framework.TextSystem
                 }
             }
         }
+
+        public override void UpdateCurrentIndex()
+        {
+            currentIndex++;
+        }
     }
 }

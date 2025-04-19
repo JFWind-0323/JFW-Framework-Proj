@@ -1,9 +1,10 @@
 using Framework.StateMachine.Base;
+using Sample.StateMachine.PlayerState;
 using UnityEngine;
 
 namespace Sample.StateMachine
 {
-    public class PlayerStateMachine : StateMachine<PlayerState>
+    public class PlayerStateMachine : StateMachine<PlayerStateBase>
     {
        
         private Animator animator;

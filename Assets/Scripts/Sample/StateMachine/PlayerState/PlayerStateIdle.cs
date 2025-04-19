@@ -1,11 +1,9 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Sample.StateMachine
+namespace Sample.StateMachine.PlayerState
 {
     [CreateAssetMenu(fileName = "PlayerStateIdle", menuName = "SO/Player State/Idle")]
-    public class PlayerStateIdle:PlayerState
+    public class PlayerStateIdle : PlayerStateBase
     {
-      
     }
 }
