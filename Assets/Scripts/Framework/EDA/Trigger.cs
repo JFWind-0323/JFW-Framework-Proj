@@ -62,20 +62,6 @@ namespace Framework.EDA
 
         private Collider _collider;
 
-        private Collider collider
-        {
-            get
-            {
-                // 每次获取时检查是否已被销毁
-                if (_collider == null || _collider.gameObject == null)
-                {
-                    _collider = GetComponent<Collider>();
-                }
-
-                return _collider;
-            }
-        }
-
         #endregion
 
         #region 工具方法
@@ -103,7 +89,7 @@ namespace Framework.EDA
             if (HasCorrectCollider(newShape)) return;
 
             // 删除旧组件
-            foreach (var collider in GetComponents<Collider>())
+            foreach (var anyCollider in GetComponents<Collider>())
             {
                 RemoveComponent<Collider>();
             }
