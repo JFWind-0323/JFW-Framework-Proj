@@ -9,16 +9,15 @@ namespace Framework.TextSystem
         protected override void SplitLine(string content)
         {
             var split = content.Split("\n");
-            for (var index = 0; index < split.Length; index++)
+            for (var i = 1; i < split.Length; i++)
             {
-                if (string.IsNullOrEmpty(split[index])) continue;
-                if (index == 0)
+                if (string.IsNullOrEmpty(split[i]))
                 {
                 }
                 else
                 {
-                    var line = split[index];
-                    lines.Add(new LineLinear(line.Trim().Split(",")));
+                    var line = split[i].Trim().Split(",");
+                    lines.Add(new LineLinear(line));
                 }
             }
         }

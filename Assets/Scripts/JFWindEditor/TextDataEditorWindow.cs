@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Framework.TextSystem;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -20,7 +21,7 @@ namespace JFWindEditor
         Task,
 
         //物品描述
-        ItemDiscription,
+        ItemDescription,
     }
 
     public class TextDataEditorWindow : OdinMenuEditorWindow
@@ -80,7 +81,7 @@ namespace JFWindEditor
 
         [Header("数据名称")] public string dataName;
 
-        [Header("数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden,Expanded = true)]
+        [Header("数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
         public ScriptableObject data;
 
         public TextDataCreator()
@@ -95,7 +96,7 @@ namespace JFWindEditor
                 TextDataType.Linear => ScriptableObject.CreateInstance<TextDataSOLinear>(),
                 TextDataType.Tree => ScriptableObject.CreateInstance<TextDataSOTree>(),
                 TextDataType.Task => ScriptableObject.CreateInstance<TextDataSOTask>(),
-                TextDataType.ItemDiscription => ScriptableObject.CreateInstance<TextDataSOItemDescription>(),
+                TextDataType.ItemDescription => ScriptableObject.CreateInstance<TextDataSOItemDescription>(),
                 _ => throw new InvalidOperationException($"不支持的数据种类: {textDataType}，请添加switch分支")
             };
         }
@@ -103,8 +104,40 @@ namespace JFWindEditor
         [Button("Create New TextData Asset")]
         private void CreateAsset()
         {
-            AssetDatabase.CreateAsset(data, $"Assets/Resources/SO/TextData/{textDataType.ToString()}/{dataName}.asset");
+            // 获取完整路径
+            string folderPath = $"Assets/Resources/SO/TextData/{textDataType.ToString()}";
+            string fullPath = $"{folderPath}/{dataName}.asset";
+
+            // 确保目录存在
+            if (!AssetDatabase.IsValidFolder(folderPath))
+            {
+                string parentFolder = "Assets";
+                string[] subFolders = folderPath.Split('/');
+        
+                // 逐级创建目录
+                foreach (var folder in subFolders.Skip(1)) // 跳过首项Assets
+                {
+                    string currentPath = $"{parentFolder}/{folder}";
+                    if (!AssetDatabase.IsValidFolder(currentPath))
+                    {
+                        string error = AssetDatabase.CreateFolder(parentFolder, folder);
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            Debug.LogError($"创建目录失败: {error}");
+                            return;
+                        }
+                    }
+                    parentFolder = currentPath;
+                }
+            }
+
+            // 创建资产
+            AssetDatabase.CreateAsset(data, fullPath);
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh(); // 重要：刷新资源数据库
+    
+            Debug.Log($"创建成功: {fullPath}");
         }
+
     }
 }

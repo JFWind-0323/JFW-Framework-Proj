@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using Config;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -15,6 +18,7 @@ namespace JFWindEditor
         GameConfig = 0,
         PlayerConfig = 1,
         LevelConfig = 2,
+
         AudioConfig = 3
         //切记在下方添加Switch进行筛选
     }
@@ -23,7 +27,7 @@ namespace JFWindEditor
     public class ConfigEditorWindow : OdinMenuEditorWindow
     {
         // 在菜单栏中添加选项以打开窗口
-        [MenuItem("Tools / Cusdom Editor")]
+        [MenuItem("Tools / Config Editor")]
         public static void OpenWindow()
         {
             GetWindow<ConfigEditorWindow>().Show();
@@ -81,10 +85,10 @@ namespace JFWindEditor
                     Debug.LogError($"Can't find screen textDataType {configAsset.nameSpace}.{dataType.ToString()}");
                     break;
                 }
-            
+
                 // 添加所有路径下的数据资产，并按名称排序
                 var assets =
-                    mainMenu.AddAllAssetsAtPath($"Data/{screenType.Name}", "Assets/Resources/SO", screenType);
+                    mainMenu.AddAllAssetsAtPath($"Data/{screenType.Name}", $"Assets/Resources/SO/{dataType.ToString()}", screenType);
                 assets.SortMenuItemsByName();
             }
 
@@ -106,7 +110,7 @@ namespace JFWindEditor
 
         [Header("数据内容")]
         // 内联编辑器显示数据资产，隐藏对象字段
-         [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
+        [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
         public ScriptableObject data;
 
         // 构造函数，初始化数据资产
@@ -133,10 +137,71 @@ namespace JFWindEditor
         [Button("Create New Config Asset")]
         private void CreateAsset()
         {
-            AssetDatabase.CreateAsset(data, $"Assets/Resources/SO/{dataName}.asset");
-            AssetDatabase.SaveAssets();
+            string folderPath = $"Assets/Resources/SO/{dataType}";
+            string fullPath = $"{folderPath}/{dataName}.asset";
+
+            try
+            {
+                // 新增路径清洗逻辑
+                folderPath = folderPath.Replace("\\", "/").TrimEnd('/');
+                string[] pathSegments = folderPath.Split('/');
+
+                StringBuilder currentPath = new StringBuilder("Assets");
+                foreach (var segment in pathSegments.Skip(1)) // 跳过初始的Assets
+                {
+                    if (string.IsNullOrWhiteSpace(segment))
+                    {
+                        Debug.LogError("包含空路径段");
+                        return;
+                    }
+
+                    currentPath.Append($"/{segment}");
+
+                    // 新增有效性验证
+                    if (!IsValidFolderName(segment))
+                    {
+                        Debug.LogError($"非法文件夹名称: {segment}");
+                        return;
+                    }
+
+                    // 改进创建逻辑
+                    if (!AssetDatabase.IsValidFolder(currentPath.ToString()))
+                    {
+                        string guid = AssetDatabase.CreateFolder(
+                            Path.GetDirectoryName(currentPath.ToString()),
+                            Path.GetFileName(currentPath.ToString())
+                        );
+
+                        // 新增结果验证
+                        if (string.IsNullOrEmpty(guid))
+                        {
+                            Debug.LogError($"创建失败: {currentPath}");
+                            return;
+                        }
+
+                        // 新增延时刷新
+                        System.Threading.Thread.Sleep(100);
+                        AssetDatabase.Refresh();
+                    }
+                }
+
+                AssetDatabase.CreateAsset(data, fullPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"创建失败: {e}");
+            }
+        }
+
+// 新增文件夹名称验证
+        private bool IsValidFolderName(string name)
+        {
+            var invalidChars = Path.GetInvalidFileNameChars();
+            return !name.Any(c => invalidChars.Contains(c)) &&
+                   !name.StartsWith(" ") &&
+                   !name.EndsWith(".");
         }
     }
-
-
 }

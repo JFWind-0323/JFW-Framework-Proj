@@ -14,7 +14,7 @@ namespace Framework.TextSystem
 
 
         [Button("Process Playbook")]
-        private void ProcessPlaybook()
+        protected void ProcessPlaybook()
         {
             lines.Clear();
             SplitLine(textAsset.text);

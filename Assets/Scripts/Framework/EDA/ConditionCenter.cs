@@ -45,7 +45,7 @@ namespace Framework.EDA
             {
                 ((EDA_Condition)conditionsDict[conditionEnum]).condition += condition;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Debug.LogError($"委托类型不匹配,请检查条件：{conditionEnum}");
             }
@@ -64,7 +64,7 @@ namespace Framework.EDA
             {
                 ((EDA_Condition<T>)conditionsDict[conditionEnum]).condition += condition;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Debug.LogError($"委托类型不匹配,请检查条件：{conditionEnum}");
             }
@@ -83,7 +83,7 @@ namespace Framework.EDA
             {
                 ((EDA_Condition<T1,T2>)conditionsDict[conditionEnum]).condition += condition;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Debug.LogError($"委托类型不匹配,请检查条件：{conditionEnum}");
             }
@@ -102,7 +102,7 @@ namespace Framework.EDA
             {
                 ((EDA_Condition<T1,T2,T3>)conditionsDict[conditionEnum]).condition += condition;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Debug.LogError($"委托类型不匹配,请检查条件：{conditionEnum}");
             }
@@ -122,7 +122,7 @@ namespace Framework.EDA
             {
                 ((EDA_Condition<T1, T2, T3, T4>)conditionsDict[conditionEnum]).condition += condition;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Debug.LogError($"委托类型不匹配,请检查条件：{conditionEnum}");
             }

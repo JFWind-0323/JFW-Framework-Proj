@@ -21,21 +21,15 @@ namespace TextSystem
         /*
          * 自行扩展
          */
-        [TableColumnWidth(30)]
-        public int id;
-        
-        [TableColumnWidth(30)]
-        public string text;
-        
-        [TableColumnWidth(30)]
-        public int next;
+        [TableColumnWidth(60,Resizable = false)] public int id;
 
-        [TableColumnWidth(30)]
-        public LineType type = LineType.Default;
+        [TableColumnWidth(100)] public string text;
+
+
+        [TableColumnWidth(100,Resizable = false)] public LineType type = LineType.Default;
 
         public LineBase(string[] lineFromFile)
         {
-            
         }
     }
 
@@ -44,9 +38,8 @@ namespace TextSystem
     {
         public LineLinear(string[] lineFromFile) : base(lineFromFile)
         {
-            id=Int32.TryParse(lineFromFile[0].Trim(),out id) ? id : 0;
+            id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
             text = lineFromFile[1];
-            next = Int32.TryParse(lineFromFile[2].Trim(),out next) ? next : 0;
             type = LineType.Default;
             Debug.Log(text);
         }
@@ -55,8 +48,27 @@ namespace TextSystem
     [Serializable]
     public class LineTree : LineBase
     {
-        public LineTree(string[] lineFromFile) : base(lineFromFile)
+        [TableColumnWidth(60, Resizable = false)] public string character;
+        [TableColumnWidth(60, Resizable = false)] public int next;
+        [TableColumnWidth(60, Resizable = false)] public string position;
+
+        public LineTree(string[] lineFromFile, string[] characters, string[] positions) : base(lineFromFile)
         {
+            id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
+            text = lineFromFile[1];
+            int characterId = Int32.TryParse(lineFromFile[2].Trim(), out characterId) ? characterId : 0;
+            character = characters[characterId];
+            int positionId = Int32.TryParse(lineFromFile[3].Trim(), out positionId) ? positionId : 0;
+            position = positions[positionId];
+            type = lineFromFile[4] switch
+            {
+                "D" => LineType.Default,
+                "Q" => LineType.Question,
+                "O" => LineType.Option,
+                "E" => LineType.End,
+                _ => LineType.Default
+            };
+            next = Int32.TryParse(lineFromFile[5].Trim(), out next) ? next : 0;
         }
     }
 
@@ -68,11 +80,33 @@ namespace TextSystem
         }
     }
 
-    [Serializable,TableList]
+    [Serializable, TableList]
     public class LineItemDescription : LineBase
     {
+        [TableColumnWidth(100), TextArea(4, 20)]
+        public string description;
+
+        [TableColumnWidth(60, Resizable = false)] [PreviewField(Height = 60, Alignment = ObjectFieldAlignment.Center)]
+        public Texture icon;
+
+        
         public LineItemDescription(string[] lineFromFile) : base(lineFromFile)
         {
+            id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
+            text = lineFromFile[1];
+            type = LineType.Default;
+            description = lineFromFile[2];
+        }
+
+        public void SetIcon(Texture icon)
+        {
+            this.icon = icon;
+        }
+
+        public void SetIcon(Texture[] icons)
+        {
+            if (icons.Length <= id) return;
+            icon = icons[id];
         }
     }
 }
