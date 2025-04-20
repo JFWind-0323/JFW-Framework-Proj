@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Framework.Factory;
 using Framework.Singleton;
 using Framework.UI.Base;
 using Framework.UI.Enum;
@@ -32,19 +33,14 @@ namespace Framework.UI
          *   - 退出游戏
          * 注意文件夹结构，UI预制体放在/Assets/Resources/Prefabs/UIPrefab下，有特殊需求自行修改
          */
-        
+
         //Canvas
         public Transform canvasTf;
-        private readonly string uiPrefabPath = "Prefabs/UIPrefab";
 
         public Dictionary<UILayer, Transform> dicLayer;
 
         private Dictionary<UILayer, string> dicLayerName;
 
-        private Dictionary<string, PanelBase> dicPanel;
-
-        //所有UI prefab在Resource下的路径
-        private Dictionary<string, string> dicPath;
 
         private Stack<PanelBase> stackPanel;
 
@@ -54,24 +50,8 @@ namespace Framework.UI
             //设置好MainCanvas
             canvasTf = GameObject.FindWithTag("MainCanvas").transform;
             DontDestroyOnLoad(canvasTf.gameObject);
-            InitPath();
             InitUILayer();
             LoadLayer();
-        }
-        private void InitPath()
-        {
-            //从UIPrefab文件夹中找到所有UI的预制体
-            //将他们的名称和路径键值对添加到dicPath中
-            var prefabs = Resources.LoadAll<GameObject>(uiPrefabPath);
-            dicPath = new Dictionary<string, string>();
-            foreach (var item in prefabs)
-            {
-                if (dicPath.ContainsKey(item.name))
-                    dicPath[item.name] = $"Prefabs/UIPrefab/{item.name}";
-                else
-                    dicPath.Add(item.name, $"Prefabs/UIPrefab/{item.name}");
-                //Debug.Log(item.dataName);
-            }
         }
 
         private void InitUILayer()
@@ -102,55 +82,38 @@ namespace Framework.UI
         //获取dicPanel中存储的基层BasePanel的类，如果为空，先加载添加进去
         private PanelBase GetPanel(string panelType)
         {
-            if (dicPanel == null) dicPanel = new Dictionary<string, PanelBase>();
-            if (dicPanel.TryGetValue(panelType, out var panel1)) return panel1;
-
-            var path = string.Empty;
-            if (dicPath.TryGetValue(panelType, out var value))
+            var panel = PrefabFactory.Instance.Create(panelType, true, canvasTf).GetComponent<PanelBase>();
+            if (panel == null)
             {
-                path = value;
-                //Debug.Log(path);
-            }
-            else
-            {
-                Debug.LogWarning("没有该面板的预制体，或检查路径下预制体的名称与UIType中的枚举是否不一致");
-                return null;
+                Debug.LogWarning("面板预制体加载失败,请检查是否忘记挂载PanelBase及其派生类的脚本");
             }
 
-
-            var go = Resources.Load<GameObject>(path);
-            var goPanel = Instantiate(go, canvasTf, false);
-            var panel = goPanel.GetComponent<PanelBase>();
-            if (panel == null) panel = goPanel.AddComponent<PanelBase>();
-            dicPanel.Add(panelType, panel);
             return panel;
         }
 
         /// <summary>
-        ///     加载面板，不入栈
+        /// 加载面板，不入栈
         /// </summary>
-        /// <param dataName="panelType"> 面板种类 </param>
-        public void LoadPanel(UIType panelType)
+        /// param dataName="panelType"> 面板预制体名称 /param>
+        public void LoadPanel(string panelType)
         {
-            var type = panelType.ToString();
             //无返回值的重载
-            var panel = GetPanel(type);
+            var panel = GetPanel(panelType);
             panel.OnEnter();
         }
 
-        public void LoadPanel(UIType panelType, out PanelBase panel)
+        public void LoadPanel(string panelType, out PanelBase panel)
         {
             //有返回值的重载
-            var type = panelType.ToString();
-            panel = GetPanel(type);
+            panel = GetPanel(panelType);
             panel.OnEnter();
         }
 
         /// <summary>
         ///     打开面板，入栈
         /// </summary>
-        /// <param dataName="panelType"> 面板种类 </param>
-        public void PushPanel(UIType panelType)
+        ///param dataName="panelType"> 面板预制体名称 /param>
+        public void PushPanel(string panelType)
         {
             if (stackPanel == null)
                 stackPanel = new Stack<PanelBase>();
@@ -165,7 +128,7 @@ namespace Framework.UI
         }
 
         /// <summary>
-        ///     关闭最上层的面板
+        /// 关闭最上层的面板
         /// </summary>
         public void PopPanel()
         {
@@ -192,7 +155,7 @@ namespace Framework.UI
         }
 
         /// <summary>
-        ///     获取最上层的面板
+        /// 获取最上层的面板
         /// </summary>
         /// <returns> 面板的基类 </returns>
         public PanelBase GetTopPanel()

@@ -12,10 +12,10 @@ namespace TextSystem
         private bool notSameIcon => !sameIcon;
 
         [OnValueChanged("UpdateIcons")] [HideIf("notSameIcon")]
-        public Texture defaultIcon;
+        public Sprite defaultIcon;
 
         [HideIf("sameIcon")] [ListDrawerSettings(ShowIndexLabels = true)]
-        public Texture[] icons;
+        public Sprite[] icons;
 
 
         protected override void SplitLine(string content)

@@ -23,7 +23,7 @@ namespace TextSystem
 
         public override void UpdateCurrentIndex()
         {
-            currentIndex++;
+            CurrentIndex++;
         }
     }
 }

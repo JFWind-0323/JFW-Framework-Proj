@@ -6,33 +6,42 @@ namespace TextSystem
 {
     public class TextDataSOBase<T> : ScriptableObject where T : LineBase
     {
-        [HorizontalGroup("File Info")] public TextAsset textAsset;
+        [Required] public TextAsset textAsset;
         [TableList] public List<T> lines = new();
-        
-        protected int currentIndex = 0;
 
+        public int CurrentIndex { get; protected set; }
 
-        [GUIColor(0,1,0)]
+        #region 内部处理数据和调试的方法
+
+        [GUIColor(0, 1, 0)]
         [Button("Process Playbook")]
         protected void ProcessPlaybook()
         {
             lines.Clear();
             SplitLine(textAsset.text);
         }
-        [GUIColor(0,0.7f,0.7f)]
+
+        [GUIColor(0, 0.7f, 0.7f)]
         [Button("Print")]
         protected virtual void Print()
         {
-            
         }
 
         protected virtual void SplitLine(string content)
         {
         }
 
-        public T GetCurrentLine()
+        #endregion
+
+        #region 外部操作数据的方法
+
+        public virtual T GetCurrentLine()
         {
-            return lines[currentIndex];
+            if (CurrentIndex < lines.Count)
+                return lines[CurrentIndex];
+            else
+                Debug.LogWarning("当前索引超出范围！");
+            return null;
         }
 
         public T GetLineByIndex(int index)
@@ -40,9 +49,20 @@ namespace TextSystem
             return lines[index];
         }
 
+        public virtual int GetCurrentIndex()
+        {
+            return CurrentIndex;
+        }
+
         public virtual void UpdateCurrentIndex()
         {
-            
         }
+
+        public virtual void SetCurrentIndex(int index)
+        {
+            CurrentIndex = index;
+        }
+
+        #endregion
     }
 }

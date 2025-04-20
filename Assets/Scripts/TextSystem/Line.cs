@@ -97,7 +97,7 @@ namespace TextSystem
         public string description;
 
         [TableColumnWidth(60, Resizable = false)] [PreviewField(Height = 60, Alignment = ObjectFieldAlignment.Center)]
-        public Texture icon;
+        public Sprite icon;
 
 
         public LineItemDescription(string[] lineFromFile) : base(lineFromFile)
@@ -108,12 +108,12 @@ namespace TextSystem
             description = lineFromFile[2];
         }
 
-        public void SetIcon(Texture icon)
+        public void SetIcon(Sprite icon)
         {
             this.icon = icon;
         }
 
-        public void SetIcon(Texture[] icons)
+        public void SetIcon(Sprite[] icons)
         {
             if (icons.Length <= id) return;
             icon = icons[id];

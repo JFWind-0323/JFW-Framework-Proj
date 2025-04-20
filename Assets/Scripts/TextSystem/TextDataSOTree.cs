@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream:Assets/Scripts/Framework/TextSystem/TextDataSOTree.cs
-using Sirenix.OdinInspector;
-using TextSystem;
-=======
->>>>>>> Stashed changes:Assets/Scripts/TextSystem/TextDataSOTree.cs
 using UnityEngine;
 using Utilities;
-
 
 namespace TextSystem
 {

@@ -35,22 +35,22 @@ namespace Framework.UI.Base
             
         }
 
-        public virtual void Enter()
+        protected virtual void Enter()
         {
             
         }
 
-        public virtual void Pause()
+        protected virtual void Pause()
         {
             
         }
 
-        public virtual void Resume()
+        protected virtual void Resume()
         {
             
         }
 
-        public virtual void Exit()
+        protected virtual void Exit()
         {
             
         }
