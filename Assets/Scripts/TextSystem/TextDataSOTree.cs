@@ -1,10 +1,13 @@
+<<<<<<< Updated upstream:Assets/Scripts/Framework/TextSystem/TextDataSOTree.cs
 using Sirenix.OdinInspector;
 using TextSystem;
+=======
+>>>>>>> Stashed changes:Assets/Scripts/TextSystem/TextDataSOTree.cs
 using UnityEngine;
 using Utilities;
 
 
-namespace Framework.TextSystem
+namespace TextSystem
 {
     [CreateAssetMenu(fileName = "TextDataSOTree", menuName = "SO/TextData/Tree", order = 0)]
     public class TextDataSOTree : TextDataSOBase<LineTree>

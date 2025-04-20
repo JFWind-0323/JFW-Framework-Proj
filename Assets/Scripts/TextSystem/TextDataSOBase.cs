@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using TextSystem;
 using UnityEngine;
 
-namespace Framework.TextSystem
+namespace TextSystem
 {
     public class TextDataSOBase<T> : ScriptableObject where T : LineBase
     {

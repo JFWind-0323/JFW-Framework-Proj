@@ -12,7 +12,7 @@ namespace Sample.StateMachine
         {
             animator = GetComponent<Animator>();
             InitALlStates();
-            SwitchState(typeof(PlayerStateIdle));
+            SwitchState(typeof(PlayerStateBaseIdle));
             
         }
 
