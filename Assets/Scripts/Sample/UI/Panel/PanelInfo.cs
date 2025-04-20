@@ -32,11 +32,11 @@ namespace Sample.UI.Panel
             UpdatePlayerStateText("Idle");
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
         }
 
-        public override void Exit()
+        protected override void Exit()
         {
             EventCenter.Instance.RemoveListener<int>(EventEnum.SceneLoad, UpdateSceneNameText);
             EventCenter.Instance.RemoveListener<string>(EventEnum.PlayerStateChanged, UpdatePlayerStateText);

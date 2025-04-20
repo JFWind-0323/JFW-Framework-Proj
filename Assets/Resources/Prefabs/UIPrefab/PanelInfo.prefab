@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u573A\u666F\u540D\u79F0\uFF1A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20448d77d128274e93b03d2b6f4aac3, type: 2}
-  m_sharedMaterial: {fileID: -5251865095615584429, guid: d20448d77d128274e93b03d2b6f4aac3,
+  m_fontAsset: {fileID: 11400000, guid: 2da708c7b15db437ab39d6c987eb09f1, type: 2}
+  m_sharedMaterial: {fileID: 8787674535080696045, guid: 2da708c7b15db437ab39d6c987eb09f1,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 66.37
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -262,7 +262,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100, y: -229}
-  m_SizeDelta: {x: 513.4719, y: 496.1371}
+  m_SizeDelta: {x: 613.4668, y: 742.0706}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3051644262434837842
 CanvasRenderer:
@@ -292,10 +292,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "AD\uFF1A\u5207\u6362\u72B6\u6001\nN\uFF1A\u5207\u6362\u573A\u666F\nTab\uFF1A\u6570\u636E\u9762\u677F"
+  m_text: "\u5207\u6362\u72B6\u6001\uFF1AAD\n\u5207\u6362\u573A\u666F\uFF1AN\n\u6570\u636E\u9762\u677F\uFF1ATab\n\u7EBF\u6027\u6587\u6848\u9762\u677F\uFF1A1\n\u7269\u54C1\u63CF\u8FF0\u9762\u677F\uFF1A2\n\u5BF9\u8BDD\u6811\u9762\u677F\uFF1A3\n\u5173\u95ED\u6240\u6709\u9762\u677F\uFF1AESC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20448d77d128274e93b03d2b6f4aac3, type: 2}
-  m_sharedMaterial: {fileID: -5251865095615584429, guid: d20448d77d128274e93b03d2b6f4aac3,
+  m_fontAsset: {fileID: 11400000, guid: 2da708c7b15db437ab39d6c987eb09f1, type: 2}
+  m_sharedMaterial: {fileID: 8787674535080696045, guid: 2da708c7b15db437ab39d6c987eb09f1,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 66.37
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -429,8 +429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u73A9\u5BB6\u72B6\u6001\uFF1A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d20448d77d128274e93b03d2b6f4aac3, type: 2}
-  m_sharedMaterial: {fileID: -5251865095615584429, guid: d20448d77d128274e93b03d2b6f4aac3,
+  m_fontAsset: {fileID: 11400000, guid: 2da708c7b15db437ab39d6c987eb09f1, type: 2}
+  m_sharedMaterial: {fileID: 8787674535080696045, guid: 2da708c7b15db437ab39d6c987eb09f1,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 66.37
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

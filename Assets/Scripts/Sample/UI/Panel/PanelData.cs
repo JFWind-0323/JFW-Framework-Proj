@@ -21,7 +21,7 @@ namespace Sample.UI.Panel
             Init();
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
         }
 
