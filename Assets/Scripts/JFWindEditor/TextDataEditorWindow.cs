@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Framework.TextSystem;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
-using TextSystem;
 using UnityEditor;
 using UnityEngine;
 
@@ -79,7 +79,7 @@ namespace JFWindEditor
         [EnumToggleButtons] [OnValueChanged("CreateNewTextDataAsset")]
         public TextDataType textDataType = TextDataType.Linear;
 
-        [Header("文案数据文件名称"),Required] public string dataName;
+        [Header("文案数据文件名称")] public string dataName;
 
         [Header("文本数据内容")] [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
         public ScriptableObject data;

@@ -86,6 +86,7 @@ namespace Framework.StateMachine.Base
             }
             currentState.Exit();
             SwitchOn(newState);
+            EventCenter.Instance.Invoke(EventEnum.PlayerStateChanged, newState.stateName);
         }
 
         public void SwitchState(Type state_type)

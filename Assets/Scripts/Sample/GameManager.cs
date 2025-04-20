@@ -19,11 +19,8 @@ namespace Sample
         public AudioConfig audioConfig;
         private UIMgr uiMgr;
         private bool IsTabActive;
-        
-        private EDA_Event<int> onSceneLoad;
 
 
-        #region Updaters
         void UIUpdater()
         {
             if (!Input.GetKeyDown(KeyCode.Tab)) return;
@@ -33,14 +30,10 @@ namespace Sample
             }
             else
             {
-                uiMgr.PushPanel(UIType.PanelData.ToString());
+                uiMgr.PushPanel(UIType.PanelData);
             }
 
             IsTabActive = !IsTabActive;
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                UIMgr.Instance.PopAll();
-            }
         }
 
         void StateMachineUpdater()
@@ -93,17 +86,11 @@ namespace Sample
                 poolFactory.Get().DoSomething();
             }
         }
-        #endregion
-
-        void Awake()
-        {
-            EventCenter.Instance.Register(EventEnum.SceneLoad,onSceneLoad);
-        }
 
         void Start()
         {
             uiMgr = UIMgr.Instance;
-            uiMgr.LoadPanel("PanelInfo");
+            uiMgr.LoadPanel(UIType.PanelInfo);
             PlayerBGMWhenSceneIsLoaded(SceneManager.GetActiveScene().buildIndex);
             EventCenter.Instance.AddListener<int>(EventEnum.SceneLoad, PlayerBGMWhenSceneIsLoaded);
         }
