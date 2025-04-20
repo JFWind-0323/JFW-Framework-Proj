@@ -30,6 +30,10 @@ namespace TextSystem
         [TableColumnWidth(100, Resizable = false)]
         public LineType type = LineType.Default;
 
+        protected LineBase()
+        {
+        }
+
         public LineBase(string[] lineFromFile)
         {
         }
@@ -38,12 +42,11 @@ namespace TextSystem
     [Serializable]
     public class LineLinear : LineBase
     {
-        public LineLinear(string[] lineFromFile) : base(lineFromFile)
+        public LineLinear(int id, string text)
         {
-            id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
-            text = lineFromFile[1];
+            this.id = id;
+            this.text = text;
             type = LineType.Default;
-            Debug.Log(text);
         }
     }
 

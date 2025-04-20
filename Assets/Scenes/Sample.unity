@@ -880,6 +880,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1183211718426490860, guid: 308203e2192df194e8d0bf39efa7ad23,
+        type: 3}
+      propertyPath: stateSOPath
+      value: SO/State/PlayerState/
+      objectReference: {fileID: 0}
     - target: {fileID: 6431107497911044934, guid: 308203e2192df194e8d0bf39efa7ad23,
         type: 3}
       propertyPath: m_Pivot.x

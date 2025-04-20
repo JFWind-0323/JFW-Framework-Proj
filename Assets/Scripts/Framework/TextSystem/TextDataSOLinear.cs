@@ -17,7 +17,7 @@ namespace Framework.TextSystem
                 else
                 {
                     var line = split[i].Trim().Split(",");
-                    lines.Add(new LineLinear(line));
+                    lines.Add(new LineLinear(i - 1, line[0]));
                 }
             }
         }

@@ -27,13 +27,14 @@ namespace Framework.TextSystem
                     lines.Add(new LineTree(line, characters, positions));
                 }
             }
+
             dialogueTree = new Tree<LineTree>(lines[0]);
             ProcessLine(lines[0]);
         }
-
-        [Button("Print")]
-        public void Print()
+        
+        protected override void Print()
         {
+            //TODO: 最后会有重复，到时候继续测测
             foreach (var lineNode in dialogueTree.GetDFSIterative())
             {
                 Debug.Log(lineNode.Value.character + ": " + lineNode.Value.text);
@@ -47,12 +48,12 @@ namespace Framework.TextSystem
                 Debug.LogWarning("Line not found");
                 return;
             }
-            
+
             TreeNode<LineTree> parentNode = dialogueTree.FindNode(lineTree => lineTree.id == rootLine.id);
-            LineTree currentLine = lines[rootLine.id+1];
-            LineTree nextLine = null;
-            for (var i = rootLine.id + 1; i < lines.Count; i++)
+            LineTree nextLine = GetLogicNextLine(rootLine);
+            for (var i = nextLine.id; i < lines.Count; i++)
             {
+                var currentLine = nextLine;
                 if (currentLine == null)
                     break;
                 if (currentLine.type == LineType.Default)
@@ -71,18 +72,22 @@ namespace Framework.TextSystem
                         ProcessLine(nextLine);
                         nextLine = GetPhysicalNextLine(nextLine);
                     }
+                    return;
                 }
                 else if (currentLine.type == LineType.Option)
                 {
                     nextLine = GetLogicNextLine(currentLine);
-                }
+                    if (nextLine.type == LineType.End)
+                    {
+                        AddLineNode(parentNode.Value, nextLine);
+                        return;
+                    }
+                } 
                 else if (currentLine.type == LineType.End)
                 {
                     AddLineNode(parentNode.Value, currentLine);
                     break;
                 }
-
-                currentLine = nextLine;
             }
         }
 
@@ -95,6 +100,7 @@ namespace Framework.TextSystem
                 Debug.LogError("Parent line not found in tree!");
                 return null;
             }
+            
             Debug.Log(childLine.character + ": " + childLine.text);
 
             return dialogueTree.AddNode(node, childLine);
@@ -104,6 +110,7 @@ namespace Framework.TextSystem
         {
             if (currentLine.next == -1)
             {
+                Debug.Log("End of dialogue data!");
                 return null;
             }
             else
@@ -119,6 +126,7 @@ namespace Framework.TextSystem
                 Debug.Log("End of dialogue data!");
                 return null;
             }
+
             return lines[currentLine.id + 1];
         }
     }

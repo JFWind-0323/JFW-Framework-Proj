@@ -13,11 +13,18 @@ namespace Framework.TextSystem
         protected int currentIndex = 0;
 
 
+        [GUIColor(0,1,0)]
         [Button("Process Playbook")]
         protected void ProcessPlaybook()
         {
             lines.Clear();
             SplitLine(textAsset.text);
+        }
+        [GUIColor(0,0.7f,0.7f)]
+        [Button("Print")]
+        protected virtual void Print()
+        {
+            
         }
 
         protected virtual void SplitLine(string content)
