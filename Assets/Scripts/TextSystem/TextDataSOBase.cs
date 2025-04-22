@@ -11,11 +11,16 @@ namespace TextSystem
 
         public int CurrentIndex { get; protected set; }
 
+        protected virtual void OnEnable()
+        {
+            ProcessTextData();
+        }
+
         #region 内部处理数据和调试的方法
 
         [GUIColor(0, 1, 0)]
-        [Button("Process Playbook")]
-        protected void ProcessPlaybook()
+        [Button("Process Text Data")]
+        protected void ProcessTextData()
         {
             lines.Clear();
             SplitLine(textAsset.text);

@@ -35,7 +35,7 @@ namespace Sample.UI.Panel
 
         void UpdateText()
         {
-            text.text= currentData.GetCurrentLine()?.text;
+            text.text= currentData.GetCurrentLine()?.content;
             idText.text = currentData.GetCurrentIndex().ToString();
             currentData.UpdateCurrentIndex();
         }

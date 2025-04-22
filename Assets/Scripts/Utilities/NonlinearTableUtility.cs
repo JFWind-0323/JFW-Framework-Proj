@@ -49,7 +49,7 @@ namespace Utilities
             {
                 throw new ArgumentException("父节点不存在");
             }
-            
+
             var child = new TreeNode<T>(childValue);
 
             adjacencyList[parent].Add(child);
@@ -111,6 +111,23 @@ namespace Utilities
         public bool ContainsNode(TreeNode<T> node)
         {
             return allNodes.Contains(node);
+        }
+        /// <summary>
+        /// 获取子节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="childIndex">子节点在子节点列表中的索引</param>
+        /// <returns></returns>
+        public TreeNode<T> GetChildNode(TreeNode<T> node, int childIndex = 0)
+        {
+            adjacencyList.TryGetValue(node, out var children);
+            if (children == null || childIndex >= children.Count)
+            {
+                Debug.LogWarning($"节点{node.Value}没有第{childIndex + 1}个子节点");
+                return null;
+            }
+
+            return children[childIndex];
         }
 
         /// <summary>
@@ -179,6 +196,8 @@ namespace Utilities
 
             return null;
         }
+
+  
 
         // 遍历模式枚举
         public enum TraversalMode

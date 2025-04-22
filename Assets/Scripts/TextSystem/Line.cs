@@ -24,7 +24,7 @@ namespace TextSystem
         [TableColumnWidth(60, Resizable = false)]
         public int id;
 
-        [TableColumnWidth(100)] public string text;
+         [TableColumnWidth(100)] public string content;
 
 
         [TableColumnWidth(100, Resizable = false)]
@@ -42,11 +42,10 @@ namespace TextSystem
     [Serializable]
     public class LineLinear : LineBase
     {
-        public LineLinear(int id, string text)
+        public LineLinear(int id, string content)
         {
             this.id = id;
-            this.text = text;
-            type = LineType.Default;
+            this.content = content;
         }
     }
 
@@ -65,7 +64,7 @@ namespace TextSystem
         public LineTree(string[] lineFromFile, string[] characters, string[] positions) : base(lineFromFile)
         {
             id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
-            text = lineFromFile[1];
+            content = lineFromFile[1];
             int characterId = Int32.TryParse(lineFromFile[2].Trim(), out characterId) ? characterId : 0;
             character = characters[characterId];
             int positionId = Int32.TryParse(lineFromFile[3].Trim(), out positionId) ? positionId : 0;
@@ -103,7 +102,7 @@ namespace TextSystem
         public LineItemDescription(string[] lineFromFile) : base(lineFromFile)
         {
             id = Int32.TryParse(lineFromFile[0].Trim(), out id) ? id : 0;
-            text = lineFromFile[1];
+            content = lineFromFile[1];
             type = LineType.Default;
             description = lineFromFile[2];
         }

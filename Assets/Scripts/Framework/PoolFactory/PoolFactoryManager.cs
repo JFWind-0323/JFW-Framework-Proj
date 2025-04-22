@@ -13,8 +13,8 @@ namespace Framework.PoolFactory
         /// <summary>
         /// 注册池工厂
         /// </summary>
-        /// <param dataName="poolFactory"> 池工厂 </param>
-        /// <typeparam dataName="T"> 池对象类型 </typeparam>
+        /// <param name="poolFactory">池工厂</param>
+        /// <typeparam name="T"> 池对象类型 </typeparam>
         public void RegisterPoolFactory<T>(IPoolFactory<IPoolableProduct> poolFactory) where T : class, IPoolableProduct
         {
             poolFactories.Add(typeof(T), poolFactory);
@@ -23,7 +23,7 @@ namespace Framework.PoolFactory
         /// <summary>
         /// 通过工厂创建MonoBehaviour对象
         /// </summary>
-        /// <typeparam dataName="T">对象类型</typeparam>
+        /// <typeparam name="T">对象类型</typeparam>
         public void CreateMono<T>(params object[] args) where T : MonoBehaviour, IPoolableProduct
         {
             if (!poolFactories.ContainsKey(typeof(T)))
@@ -39,7 +39,7 @@ namespace Framework.PoolFactory
         /// <summary>
         /// 通过工厂创建普通对象
         /// </summary>
-        /// <typeparam dataName="T">对象类型</typeparam>
+        /// <typeparam name="T">对象类型</typeparam>
         public void CreateStandard<T>(params object[] args) where T : class, IPoolableProduct
         {
             if (!poolFactories.ContainsKey(typeof(T)))
@@ -55,7 +55,7 @@ namespace Framework.PoolFactory
         /// <summary>
         /// 获取MonoBehaviour对象
         /// </summary>
-        /// <typeparam dataName="T">对象类型</typeparam>
+        /// <typeparam name="T">对象类型</typeparam>
         /// <returns>对象</returns>
         public T GetMono<T>() where T : MonoBehaviour, IPoolableProduct
         {
@@ -70,7 +70,7 @@ namespace Framework.PoolFactory
         /// <summary>
         /// 获取普通对象
         /// </summary>
-        /// <typeparam dataName="T">对象类型</typeparam>
+        /// <typeparam name="T">对象类型</typeparam>
         /// <returns>对象</returns>
         public T GetStandard<T>() where T : class, IPoolableProduct
         {

@@ -9,7 +9,39 @@ namespace TextSystem
         public string[] characters;
         public string[] positions;
         private Tree<LineTree> dialogueTree;
+        private LineTree currentLine;
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            currentLine = dialogueTree.root.Value;
+        }
+
+        #region 外部获取数据
+
+        public void UpdateCurrentLine(LineTree nextLine)
+        {
+            currentLine = nextLine;
+        }
+
+        public LineTree GetCurrentLine(out int childrenCount)
+        {
+            var currentNode = dialogueTree.FindNode(currentLine);
+            childrenCount = dialogueTree.GetChildren(currentNode).Count;
+            return currentLine;
+        }
+
+        public LineTree GetNextLine(int childIndex = 0)
+        {
+            var currentNode = dialogueTree.FindNode(currentLine);
+            var nextNode = dialogueTree.GetChildNode(currentNode, childIndex);
+            return nextNode.Value;
+        }
+
+        #endregion
+
+
+        #region 数据调试与处理
         protected override void SplitLine(string content)
         {
             var split = content.Split("\n");
@@ -27,14 +59,14 @@ namespace TextSystem
 
             dialogueTree = new Tree<LineTree>(lines[0]);
             ProcessLine(lines[0]);
+            
         }
-        
+
         protected override void Print()
         {
-            //TODO: 最后会有重复，到时候继续测测
             foreach (var lineNode in dialogueTree.GetDFSIterative())
             {
-                Debug.Log(lineNode.Value.character + ": " + lineNode.Value.text);
+                Debug.Log(lineNode.Value.character + ": " + lineNode.Value.content);
             }
         }
 
@@ -69,6 +101,7 @@ namespace TextSystem
                         ProcessLine(nextLine);
                         nextLine = GetPhysicalNextLine(nextLine);
                     }
+
                     return;
                 }
                 else if (currentLine.type == LineType.Option)
@@ -79,7 +112,7 @@ namespace TextSystem
                         AddLineNode(parentNode.Value, nextLine);
                         return;
                     }
-                } 
+                }
                 else if (currentLine.type == LineType.End)
                 {
                     AddLineNode(parentNode.Value, currentLine);
@@ -97,8 +130,6 @@ namespace TextSystem
                 Debug.LogError("Parent line not found in tree!");
                 return null;
             }
-            
-            Debug.Log(childLine.character + ": " + childLine.text);
 
             return dialogueTree.AddNode(node, childLine);
         }
@@ -126,5 +157,7 @@ namespace TextSystem
 
             return lines[currentLine.id + 1];
         }
+
+        #endregion
     }
 }

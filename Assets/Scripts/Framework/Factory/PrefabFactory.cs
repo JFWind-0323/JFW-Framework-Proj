@@ -16,7 +16,7 @@ namespace Framework.Factory
             GameObject[] allPrefabs = Resources.LoadAll<GameObject>("Prefabs");
             foreach (GameObject prefab in allPrefabs)
             {
-                string targetName = prefab.name;
+                string targetName;
                 //如果预制体名称重复，则键为文件夹名称/预制体名称
                 if (!prefabDict.TryAdd(prefab.name, prefab))
                 {
@@ -27,8 +27,7 @@ namespace Framework.Factory
 
                     prefabDict.Add(targetName, prefab);
                 }
-
-                //Debug.Log(targetName);
+                
             }
         }
 
@@ -37,7 +36,7 @@ namespace Framework.Factory
         /// </summary>
         /// <param name="prefabKey"></param>
         /// <returns>预制体</returns>
-        public GameObject Get(string prefabKey)
+        public GameObject GetPrefab(string prefabKey)
         {
             if (prefabDict.TryGetValue(prefabKey, out var value))
             {
@@ -70,6 +69,11 @@ namespace Framework.Factory
 
             Debug.LogWarning("Prefab " + prefabKey + " not found ");
             return null;
+        }
+
+        public List<string> GetAllKeys()
+        {
+            return new List<string>(prefabDict.Keys);
         }
     }
 }

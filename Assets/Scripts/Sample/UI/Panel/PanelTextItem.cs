@@ -4,14 +4,23 @@ using Framework.UI.Base;
 using TextSystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PanelTextItem : PanelBase
-{
-    public TextDataSOItemDescription dataItem;
-    public TMP_Text itemName;
+{ 
+    
+    public TextDataSOItemDescription[] itemDescriptionDatas;
+    public TMP_Text itemNameText;
     public TMP_Text text;
     public GameObject itemsParent;
+    public int itemDescriptionId;
+    private TextDataSOItemDescription currentData=> itemDescriptionDatas[itemDescriptionId];
+
+    void Awake()
+    {
+        itemDescriptionDatas = Resources.LoadAll<TextDataSOItemDescription>("SO/TextData/ItemDescription");
+    }
 
     protected override void Enter()
     {
@@ -22,7 +31,7 @@ public class PanelTextItem : PanelBase
             var image = images[index];
 
 
-            image.sprite = dataItem.GetLineByIndex(index - 1)?.icon;
+            image.sprite = currentData.GetLineByIndex(index - 1)?.icon;
         }
 
         for (var index = 0; index < btns.Length; index++)
@@ -36,7 +45,7 @@ public class PanelTextItem : PanelBase
     void UpdateText(int itemIndex)
     {
         Debug.Log(itemIndex);
-        itemName.text = dataItem.GetLineByIndex(itemIndex)?.text;
-        text.text = dataItem.GetLineByIndex(itemIndex)?.description;
+        itemNameText.text = currentData.GetLineByIndex(itemIndex)?.content;
+        text.text = currentData.GetLineByIndex(itemIndex)?.description;
     }
 }
