@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6246688115011628964}
   - component: {fileID: 125348123933947442}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 9086946238706375467}
   - component: {fileID: 5855276427557591831}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,10 +707,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiLayer: 0
-  dataItem: {fileID: 11400000, guid: 6376e92e3f4e34bf8943de035bb65dc9, type: 2}
-  itemName: {fileID: 1870300746844896016}
+  itemDescriptionDatas: []
+  itemNameText: {fileID: 1870300746844896016}
   text: {fileID: 125348123933947442}
   itemsParent: {fileID: 2437167204276800770}
+  itemDescriptionId: 0
 --- !u!1 &3690214764505718283
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +724,7 @@ GameObject:
   - component: {fileID: 2073692576535091836}
   - component: {fileID: 1870300746844896016}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: ItemNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

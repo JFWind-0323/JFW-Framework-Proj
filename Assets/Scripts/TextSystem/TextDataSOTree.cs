@@ -11,9 +11,9 @@ namespace TextSystem
         private Tree<LineTree> dialogueTree;
         private LineTree currentLine;
 
-        protected override void OnEnable()
+        void OnEnable()
         {
-            base.OnEnable();
+            ProcessTextData();
             currentLine = dialogueTree.root.Value;
         }
 

@@ -29,7 +29,10 @@ namespace TextSystem
                 else
                 {
                     var line = split[i].Split(",");
-                    lines.Add(new LineItemDescription(line));
+                    if (line.Length > 0)
+                    {
+                        lines.Add(new LineItemDescription(line));
+                    }
                 }
 
                 UpdateIcons();

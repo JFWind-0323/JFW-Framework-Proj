@@ -9,12 +9,13 @@ namespace TextSystem
         [Required] public TextAsset textAsset;
         [TableList] public List<T> lines = new();
 
-        public int CurrentIndex { get; protected set; }
+        protected int CurrentIndex { get; set; }
 
-        protected virtual void OnEnable()
+        void OnEnable()
         {
-            ProcessTextData();
+            CurrentIndex = 0;
         }
+        
 
         #region 内部处理数据和调试的方法
 
