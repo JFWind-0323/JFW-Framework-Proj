@@ -1,5 +1,5 @@
 using Framework.UI;
-using TextSystem;
+using TextData;
 using UnityEngine;
 
 namespace Sample.TextSystem

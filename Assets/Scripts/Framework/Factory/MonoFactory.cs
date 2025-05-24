@@ -13,13 +13,16 @@ namespace Framework.Factory
             FactoryManager.Instance.RegisterFactory(this);
         }
 
+        /// <summary>
+        /// 创建MonoBehaviour对象
+        /// </summary>
+        /// <returns></returns>
         public override T Create()
         {
             var obj = new GameObject(typeof(T).Name).AddComponent<T>();
             PostProcess(obj);
             return obj;
         }
-
         protected override void PostProcess(T product)
         {
             if (parent)

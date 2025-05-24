@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TextSystem
+namespace TextData
 {
     [CreateAssetMenu(fileName = "TextDataSOTask", menuName = "SO/TextData/Task", order = 0)]
     public class TextDataSOTask : TextDataSOBase<LineTask>

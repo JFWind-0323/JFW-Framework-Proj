@@ -11,6 +11,9 @@ namespace Framework.PoolFactory
             factory = new StandardFactory<T>(args);
         }
 
+        /// <summary>
+        /// 创建对象并放入对象池中
+        /// </summary>
         public override void Create()
         {
             T product = factory.Create();
@@ -31,6 +34,10 @@ namespace Framework.PoolFactory
             return pool.Get();
         }
 
+        /// <summary>
+        /// 回收对象
+        /// </summary>
+        /// <param name="product"></param>
         public override void Return(T product)
         {
             pool.Return(product);

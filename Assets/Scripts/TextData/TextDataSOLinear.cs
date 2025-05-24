@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TextSystem
+namespace TextData
 {
     [CreateAssetMenu(fileName = "TextDataSOLinear", menuName = "SO/TextData/Linear", order = 0)]
     public class TextDataSOLinear : TextDataSOBase<LineLinear>

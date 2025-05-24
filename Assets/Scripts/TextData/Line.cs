@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace TextSystem
+namespace TextData
 {
     public enum LineType
     {

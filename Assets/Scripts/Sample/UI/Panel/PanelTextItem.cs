@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Framework.UI.Base;
-using TextSystem;
+using TextData;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;

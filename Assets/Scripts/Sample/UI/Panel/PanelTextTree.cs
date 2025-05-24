@@ -1,6 +1,6 @@
 using Framework.PoolFactory;
 using Framework.UI.Base;
-using TextSystem;
+using TextData;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

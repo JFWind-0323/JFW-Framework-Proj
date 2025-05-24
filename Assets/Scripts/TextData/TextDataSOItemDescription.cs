@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace TextSystem
+namespace TextData
 {
     [CreateAssetMenu(fileName = "TextDataSOItemDescription", menuName = "SO/TextData/ItemDescription", order = 0)]
     public class TextDataSOItemDescription : TextDataSOBase<LineItemDescription>

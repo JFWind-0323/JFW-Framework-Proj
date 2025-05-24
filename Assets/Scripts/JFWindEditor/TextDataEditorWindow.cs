@@ -3,7 +3,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
-using TextSystem;
+using TextData;
 using UnityEditor;
 using UnityEngine;
 

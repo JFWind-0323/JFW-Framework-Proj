@@ -9,6 +9,10 @@ namespace Framework.Factory
             this.args = args;
             FactoryManager.Instance.RegisterFactory(this);
         }
+        /// <summary>
+        /// 创建产品
+        /// </summary>
+        /// <returns></returns>
         public override T Create()
         {
             var product = Activator.CreateInstance(typeof(T), args) as T;
@@ -16,6 +20,7 @@ namespace Framework.Factory
             return product;
         }
 
+        
         protected override void PostProcess(T product)
         {
             product.Construct(args);

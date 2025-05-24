@@ -1,5 +1,5 @@
 using Framework.UI.Base;
-using TextSystem;
+using TextData;
 using TMPro;
 using UnityEngine;
 
